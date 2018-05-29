@@ -10,7 +10,7 @@ In this assignment, you'll be building a litter patrol game -
 
 ## Scaffolding
 The game engine has been created for you. The state in the top-level component, `App.js`, contains two items:
-1. **bins** - an array of objects that are a representation of the "holes", or the trash bins in the game.
+1. **bins** - an array of objects that are a representation of each of the trash bins in the game.
 2. **points** - an integer that contains the number of times your trash was put in the bin, i.e. clicked.
 
 ## Requirements
@@ -18,11 +18,12 @@ The game engine has been created for you. The state in the top-level component, 
 ### Baseline
 Inspect `App.js` and parse through the logic that exists to understand the game engine logic - this will help you achieve the overall objectives.
 
-- Add comments to the `startGame()`, `getBinState()` and `onTrashClicked()` methods that explain what the code is doing or what outstanding questions you have about the code.
+- Add comments to the `startGame()`, `getBinState()` methods that explain what the code is doing or what outstanding questions you have about the code.
 - Review these comments with a neighbor before moving on to Wave 1 requirements.
 
 ### Wave 1
-- Modify the `props` that are passed into `Trash.js` and the `Trash.js` component itself so that the Trash image only appears when the **isTrashVisible** property of the appropriate **bin** object is set to true.
+Modify the `props` that are passed into `Trash.js` and the `Trash.js` component itself so that the Trash image only appears when the **isTrashVisible** property of the appropriate **bin** object is set to true.
 
 ### Wave 2
-- Modify `Trash.js` so that points are incremented whenever a visible trash is clicked.
+1. Fill in the `onTrashClicked` function to increment the points when the event handler is called.
+2. Tie this event handler function to the `Trash` component so that points are incremented whenever a **visible** trash is clicked.
