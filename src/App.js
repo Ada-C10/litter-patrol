@@ -35,8 +35,13 @@ class App extends Component {
     //     this.setState(items.push(testItem);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  markClicked = (itemIndex) => {
+    let updatedItems = this.state.items;
+    if (!updatedItems[itemIndex].isClicked) {
+      updatedItems[itemIndex].isClicked = true;
+
+      this.setState({ items: updatedItems });
+    }
   }
 
   render() {
@@ -44,8 +49,11 @@ class App extends Component {
       return <GameItem
                height={item.height}
                layer={100 + i}
-               key={item.id}
                type={item.type}
+               key={item.id}
+               index = {i}
+               isClicked={false}
+               markClickedCallback={ this.markClicked }
              />;
     });
 
