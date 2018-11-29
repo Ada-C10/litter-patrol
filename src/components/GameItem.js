@@ -13,8 +13,10 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    this.props.markClickedCallback(this.props.index);
     this.setState({isClicked: true});
+    if (this.props.type === "litter") {
+      this.props.updateScoreCallback();
+    }
   }
 
   markImage = () => {
@@ -38,7 +40,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className={"game-item " + this.markImage()} style={itemStyle}>
+      <div className={"game-item " + this.markImage()} style={itemStyle} onClick={ this.onItemClicked }>
         <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked }></img>
       </div>
     );

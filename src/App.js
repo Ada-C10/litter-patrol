@@ -30,18 +30,12 @@ class App extends Component {
     };
 
     this.enableSpawner();
-
-    // const testItem = this.spawnItem(Date.now());
-    // this.state.items.push(testItem);
   }
 
-  markClicked = (itemIndex) => {
-    let updatedItems = this.state.items;
-    if (!updatedItems[itemIndex].isClicked) {
-      updatedItems[itemIndex].isClicked = true;
-
-      this.setState({ items: updatedItems });
-    }
+  updateScore = () => {
+    let score = this.state.points;
+    score += 1;
+    this.setState({ points: score });
   }
 
   render() {
@@ -51,9 +45,7 @@ class App extends Component {
                layer={100 + i}
                type={item.type}
                key={item.id}
-               index = {i}
-               isClicked={false}
-               markClickedCallback={ this.markClicked }
+               updateScoreCallback={ this.updateScore }
              />;
     });
 
