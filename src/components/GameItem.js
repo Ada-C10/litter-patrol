@@ -16,6 +16,9 @@ class GameItem extends Component {
     // console.log(this.props.type);
     const itemClass = this.props.type === "litter" ? 'spotted-litter' : 'spotted-nature';
     this.setState({ itemClass });
+    if (this.props.onGameItemClick) {
+      this.props.onGameItemClick(this.props.type);
+    }
   }
 
   render() {
@@ -43,6 +46,7 @@ GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
+  onGameItemClick: PropTypes.func,
 };
 
 export default GameItem;
