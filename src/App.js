@@ -44,13 +44,16 @@ class App extends Component {
   }
 
   render() {
+
     const items = this.state.items.map((item, i) => {
+      console.log("this is item[0] VV");
+      console.log(item.type);
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}
              />;
     });
 
@@ -140,7 +143,6 @@ class App extends Component {
         choice -= weight; // otherwise move past this entry
       }
     });
-
     return selectedType;
   }
 
