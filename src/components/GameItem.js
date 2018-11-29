@@ -4,9 +4,11 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+
   propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   render() {
@@ -16,7 +18,57 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+
+    let icon = ItemIcons.litter;
+    const type = this.props.type
+    if (type == 'litter') {
+      icon = ItemIcons.litter;
+    } else if (type == 'rock') {
+      icon = ItemIcons.rock;
+    } else if (type == 'bush') {
+      icon = ItemIcons.bush;
+    } else if (type == 'flower') {
+      icon = ItemIcons.flower;
+    } else if (type == 'mushroom') {
+      icon = ItemIcons.mushroom;
+    };
+
+    //
+    // switch (type) {
+    //   case 'litter':
+    //     icon = ItemIcons.litter;
+    //   case 'rock':
+    //     icon = ItemIcons.rock;
+    //   case 'bush':
+    //     icon = ItemIcons.bush;
+    //   case 'flower':
+    //     icon = ItemIcons.flower;
+    //   case 'mushroom':
+    //     icon = ItemIcons.mushroom;
+      // default:
+      //   icon = ItemIcons.litter;
+    // }
+
+
+    //   case 'rock':
+    //     const icon = ItemIcons.rock;
+    //   case 'bush':
+    //     const icon = ItemIcons.bush;
+    //   case 'flower':
+    //     const icon = ItemIcons.flower;
+    //   case 'mushroom':
+    //     const icon = ItemIcons.mushroom;
+    // }
+    //
+
+    // ItemIcons.rock;
+
+    // litter,
+    // rock,
+    // bush,
+    // flower,
+    // mushroom
+
 
     return (
       <div className="game-item" style={itemStyle}>
