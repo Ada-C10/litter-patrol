@@ -166,7 +166,7 @@ class App extends Component {
     // Update the game state (active items) at a fixed rate
     const update = () => {
       const callback = () => {
-        this.updateTimer = setTimeout(update, 1000 / 8);
+        this.updateTimer = setTimeout(update, 10000 / 8);
       };
 
       const newState = this.tick(Date.now());
