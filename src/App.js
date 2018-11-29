@@ -55,7 +55,7 @@ class App extends Component {
                height={item.height}
                layer={100 + i}
                key={item.id}
-               index = {i} />;
+               itemList={config.itemTypes};
     });
 
     return (
