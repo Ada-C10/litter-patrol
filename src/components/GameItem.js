@@ -4,7 +4,9 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     const itemStyle = {
