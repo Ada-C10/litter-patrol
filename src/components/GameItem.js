@@ -4,7 +4,7 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-
+  // itemClass set to empty string for div lassName={`game-item ${this.state.itemClass}`}. Default value
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +12,7 @@ class GameItem extends Component {
     }
   }
 
+  // when item is clicked itemClass is set to .spotted-litter or .spotted-nature depending on if it is litter or not. this.setState changes the state of the item. Created a function onGameItemClick which is accessed in App.js as onItemClicked. This updates the score if item === "litter"
   onItemClicked = () => {
     // console.log(this.props.type);
     const itemClass = this.props.type === "litter" ? 'spotted-litter' : 'spotted-nature';
@@ -28,6 +29,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
+    // Added onClick method to the div container, rather than img (makes area larger to click on)
     const icon = ItemIcons[this.props.type];
 
     return (
@@ -42,6 +44,7 @@ class GameItem extends Component {
   }
 }
 
+// Added props here of type and onGameItemClick which is a function.
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,

@@ -48,6 +48,8 @@ class App extends Component {
     }
   }
 
+  // added type to show all images
+  // added onGameItemClick function which connects GameItem.js to App.js to keep track of the score.
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
