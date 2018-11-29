@@ -18,8 +18,9 @@ class GameItem extends Component {
       isSpotted: true
     });
 
-    this.props.itemClickCallBack();
-
+    if (this.props.type === 'litter') {
+      this.props.itemClickCallBack();
+    }
   }
 
   render() {
@@ -47,7 +48,6 @@ class GameItem extends Component {
     );
   }
 }
-
 
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
