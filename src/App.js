@@ -23,15 +23,15 @@ class App extends Component {
 
   constructor() {
     super();
-
+    // GP this.state contains state.items and state.points
     this.state = {
       items: [],
       points: 0,
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -49,8 +49,7 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+               type ={item.type}
              />;
     });
 

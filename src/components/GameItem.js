@@ -12,8 +12,19 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon;
+
+    if (this.props.type === 'bush') {
+      icon = ItemIcons.bush;
+    } else if (this.props.type === 'litter') {
+      icon = ItemIcons.litter;
+    } else if (this.props.type === 'rock') {
+      icon = ItemIcons.rock;
+    } else if (this.props.type === 'flower'){
+      icon = ItemIcons.flower;
+    } else if (this.props.type === 'mushroom'){
+      icon = ItemIcons.mushroom;
+    }
 
     return (
       <div className="game-item" style={itemStyle}>
