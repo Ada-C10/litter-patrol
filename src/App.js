@@ -29,10 +29,10 @@ class App extends Component {
       points: 0,
     };
 
-    this.enableSpawner();
+    // this.enableSpawner();
 
-    // const testItem = this.spawnItem(Date.now());
-    //     this.setState(items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
   }
 
   markClicked = (itemIndex) => {
