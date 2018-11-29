@@ -4,6 +4,20 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  findType = (type) => {
+    switch(type) {
+    case "rock":
+        return ItemIcons.rock;
+    case "bush":
+        return ItemIcons.bush;
+    case "flower":
+        return ItemIcons.flower;
+    case "mushroom":
+        return ItemIcons.mushroom;
+    default:
+        return ItemIcons.litter;
+    }
+  }
 
 
   render() {
@@ -12,8 +26,7 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = this.findType(this.props.type);
 
     return (
       <div className="game-item" style={itemStyle}>
@@ -27,6 +40,7 @@ class GameItem extends Component {
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired
 }
 
 export default GameItem;
