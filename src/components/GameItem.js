@@ -4,13 +4,22 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  onItemClicked = () => {
-    this.props.markClickedCallback(this.props.index);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isClicked: false,
+    };
   }
 
-  markImage = (icon) => {
-    if (this.props.isClicked) {
-      if (icon === "litter") {
+  onItemClicked = () => {
+    this.props.markClickedCallback(this.props.index);
+    this.setState({isClicked: true});
+  }
+
+  markImage = () => {
+    if (this.state.isClicked) {
+      if (this.props.type === "litter") {
         return "spotted-litter"
       } else {
         return "spotted-nature"
@@ -27,10 +36,9 @@ class GameItem extends Component {
     };
 
     const icon = ItemIcons[this.props.type];
-    console.log(this.markImage(icon));
 
     return (
-      <div className={"game-item " + this.markImage(icon)} style={itemStyle}>
+      <div className={"game-item " + this.markImage()} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked }></img>
       </div>
     );
