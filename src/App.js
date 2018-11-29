@@ -39,9 +39,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
-  }
+  // onItemClicked = (event) => {
+  //   // Fill this in!
+  //   console.log('I am here');
+  //   console.log(event.target);
+  // }
 
   render() {
     const items = this.state.items.map((item, i) => {
