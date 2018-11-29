@@ -43,6 +43,11 @@ class App extends Component {
     // Fill this in!
   }
 
+  increaseScore = () => {
+    let updatedScore = this.state.points + 1;
+    this.setState({points: updatedScore});
+  }
+
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
@@ -52,6 +57,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               increaseScoreCallback = {this.increaseScore}
              />;
     });
 

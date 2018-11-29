@@ -13,7 +13,10 @@ class GameItem extends Component {
   }
 
   onItemClick = () => {
-    this.setState({spotted: !this.state.spotted});
+    this.setState({spotted: true});
+    if (this.props.type === 'litter') {
+      this.props.increaseScoreCallback();
+    }
   }
 
   renderItemClass = () => {
@@ -35,7 +38,6 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const icon = ItemIcons[`${this.props.type}`];
-    console.log(this.state.spotted)
 
     return (
       <div className={this.renderItemClass()} style={itemStyle}>
