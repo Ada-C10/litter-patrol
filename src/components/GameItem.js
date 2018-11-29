@@ -18,6 +18,8 @@ class GameItem extends Component {
       isSpotted: true
     });
 
+    this.props.itemClickCallBack();
+
     console.log('button clicked!');
 
   }
@@ -39,8 +41,6 @@ class GameItem extends Component {
     }
 
     const itemClass = this.state.isSpotted ? 'game-item '+ spottedClass : 'game-item';
-
-    console.log(itemClass);
 
     return (
       <div className={itemClass} style={itemStyle}>
