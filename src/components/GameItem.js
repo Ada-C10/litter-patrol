@@ -20,8 +20,6 @@ class GameItem extends Component {
 
     this.props.itemClickCallBack();
 
-    console.log('button clicked!');
-
   }
 
   render() {
