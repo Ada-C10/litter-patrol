@@ -5,20 +5,9 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
-  identifyType = (type) =>{
-    switch (type) {
-      case "rock":
-        return ItemIcons.rock;
-        case "bush":
-          return ItemIcons.bush;
-          case "flower":
-            return ItemIcons.flower;
-            case "mushroom":
-              return ItemIcons.mushroom;
-              default:
-              return ItemIcons.litter;
-    }
-  }
+
+
+
 
   render() {
     const itemStyle = {
@@ -28,7 +17,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = this.identifyType(this.props.type);
+    const icon = ItemIcons[this.props.type]
 
     return (
       <div className="game-item" style={itemStyle}>
