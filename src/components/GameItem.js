@@ -4,8 +4,8 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       displayTick: false,
     };
@@ -13,8 +13,9 @@ class GameItem extends Component {
 
   onIconClick = () => {
     this.setState({ displayTick: true});
-    console.log('heerre');
-    console.log(this.state.displayTick);
+    this.props.onItemClickedCallback(this.props.type);
+    // console.log('props type');
+    // console.log(this.props.type);
   };
 
   render() {
@@ -27,22 +28,21 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const iconType = itemStyle.type;
+    console.log('type');
     console.log(iconType);
     const icon = ItemIcons[iconType];
 
     let tickDisplay = null;
-    //  check if it's been clicked!
-    // check it it's not clicked!
     if (this.state.displayTick) {
       tickDisplay = iconType === 'litter' ? 'spotted-litter' : 'spotted-nature';
     };
 
-    console.log(tickDisplay);
+    // console.log(tickDisplay);
 
     return (
       <div className="game-item" style={itemStyle} onClick={this.onIconClick}>
         <div className={tickDisplay}></div>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={icon} alt={iconType} className="icon-item"></img>
       </div>
     );
   }

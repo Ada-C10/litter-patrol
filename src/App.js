@@ -30,18 +30,28 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    // this.enableSpawner();
+    this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (type) => {
     // Fill this in!
-  }
+    console.log('in the app type:')
+    console.log(type);
+    // const litter = event.target.alt === 'litter';
+    // console.log(litter);
+
+    let tallyPoints = this.state.points + 1;
+
+    if (type === 'litter') {
+      this.setState({ points: tallyPoints});
+    };
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -50,6 +60,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               onItemClickedCallback={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
@@ -61,7 +72,7 @@ class App extends Component {
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
-        <section className="level">
+        <section className="level" onClick={this.onItemClicked}>
           { this.levelBackground() }
           { items }
         </section>
