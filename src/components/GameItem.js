@@ -15,11 +15,14 @@ class GameItem extends Component {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
+    updateScoreCallback: PropTypes.function,
   }
 
   onItemClick = () => {
     this.setState({ clicked: true });
-    console.log(this.props.type);
+    if (this.props.type === 'litter') {
+      this.props.updateScoreCallback();
+    }
   }
 
   clickedLabel = () => {

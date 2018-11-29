@@ -39,9 +39,13 @@ class App extends Component {
     console.log(this.state);
   }
 
-  // onItemClicked = () => {
-  //   // Fill this in!
-  // }
+  updateScore = () => {
+    let updatedScore = this.state.points;
+    updatedScore++;
+
+      // Call setState to update our state (as well as re-render automatically)
+    this.setState({ points: updatedScore });
+  }
 
 
   render() {
@@ -51,9 +55,11 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               updateScoreCallback={this.updateScore}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
+    console.log(this.state);
 
     return (
       <div className="game">
@@ -69,6 +75,7 @@ class App extends Component {
 
       </div>
     );
+
   }
 
 
