@@ -5,8 +5,24 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
+constructor(props) {
+  super(props);
+  this.state = {
+    spotted: false
+  };
+}
+
+clickItem = () => {
+  this.setState({
+    spotted: true
+  });
+
+  if (this.props.type === "litter") {
+    this.props.litterClick();
+  }
 
 
+}
 
 
   render() {
@@ -21,7 +37,7 @@ class GameItem extends Component {
 
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.clickItem}></img>
       </div>
     );
   }

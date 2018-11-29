@@ -41,7 +41,7 @@ class App extends Component {
 
   onItemClicked = () => {
     this.setState({
-      points: this.points.value += 1
+      points: this.state.points + 1
     })
   }
 
@@ -52,6 +52,8 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               litterClick={this.onItemClicked}
+
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
