@@ -55,7 +55,7 @@ class App extends Component {
                height={item.height}
                layer={100 + i}
                key={item.id}
-               itemType={item} />
+               itemType={item.type} />
     });
 // itemList={config.itemTypes
 // need to return functions like spawnItem or randomtype?
