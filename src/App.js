@@ -41,6 +41,7 @@ class App extends Component {
 
   onItemClicked = () => {
     // Fill this in!
+
   }
 
 
@@ -55,11 +56,11 @@ class App extends Component {
                height={item.height}
                layer={100 + i}
                key={item.id}
-               itemType={item.type} />
+               itemType={item.type}
+               isLitter={item.isLitter}
+               hasBeenClicked={item.hasBeenClicked} />
     });
-// itemList={config.itemTypes
-// need to return functions like spawnItem or randomtype?
-// return index?
+
 
     return (
       <div className="game">
