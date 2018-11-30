@@ -15,7 +15,10 @@ class GameItem extends Component {
   clickItem = () => {
     this.setState({
       spotted: true
-    })
+    });
+     if (this.props.type === "litter") {
+       this.props.litterClickCallback();
+     };
   }
 
   render() {
