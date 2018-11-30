@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
+  clickCallback = (e) => {
+    console.log("An item was clicked!");
+    console.log(this.props.index);
+    this.props.onClickCallback(this.props.index);
+  }
 
   render() {
     const itemStyle = {
@@ -13,11 +18,35 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon;
+    let className = "game-item";
+
+    switch(this.props.type) {
+      case 'litter':
+        icon = ItemIcons.litter;
+        break;
+      case 'rock':
+        icon = ItemIcons.rock;
+        break;
+      case 'bush':
+        icon = ItemIcons.bush;
+        break;
+      case 'flower':
+        icon = ItemIcons.flower;
+        break;
+      default:
+        icon = ItemIcons.mushroom;
+    };
+
+    if (this.props.type === "litter" && this.props.wasSpotted) {
+      className = "game-item spotted-litter"
+    } else if (this.props.wasSpotted) {
+      className = "game-item spotted-nature";
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={className} style={itemStyle} onClick={this.clickCallback}>
+        <img src={icon} alt="Item" className="icon-item" />
       </div>
     );
   }
@@ -27,6 +56,7 @@ class GameItem extends Component {
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
+  type: PropTypes.string,
 }
 
 export default GameItem;

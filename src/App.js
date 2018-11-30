@@ -25,32 +25,46 @@ class App extends Component {
     super();
 
     this.state = {
-      items: [],
+      items: [], /* item array keeps track of items and if they've been spotted */
       points: 0,
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (index) => {
     // Fill this in!
+    // This click handler is passed via props to GameItem
+    console.log("Item was clicked");
+    // identify item clicked on
+    console.log(index);
+    // change it's state to spotted
+    let updatedItemData = this.state.items;
+    updatedItemData[index].wasSpotted = true;
+    this.setState({items: updatedItemData});
+    console.log(this.state.items[index]);
   }
 
   render() {
+    // mapping over item array from state to create array of GameItems
+    // array of GameItems to be returned in return statement
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
+               index={i}
+               type={item.type}
+               wasSpotted={false}
+               onClickCallback={this.onItemClicked}
              />;
     });
 
