@@ -8,7 +8,7 @@ class App extends Component {
   config = {
     itemTypes: {
       // type: spawn rate (weighting)
-      litter:  10,
+      litter:  20,
       rock:     5,
       bush:     5,
       flower:   5,
@@ -39,13 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = (e) => {
-    // Fill this in!
+  onItemClicked = (pointsValues) => {
+    // setting the state of points by using the info passed in from GameItem.js
     this.setState({
-      points: this.state.points + e 
+      points: this.state.points + pointsValues
 
     });
-    console.log(this.state.points)
   }
 
   render() {
