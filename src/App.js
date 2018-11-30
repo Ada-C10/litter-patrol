@@ -42,6 +42,10 @@ class App extends Component {
   onItemClicked = (itemIndex) => {
     // Fill this in!
     console.log(itemIndex);
+    let updatedItems = this.state.items;
+    updatedItems[itemIndex].hasBeenClicked = true;
+    this.setState({items: updatedItems});
+    console.log(updatedItems[itemIndex]);
   }
 
 
