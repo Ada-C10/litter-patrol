@@ -9,39 +9,41 @@ class GameItem extends Component {
     super(props);
     this.type = props.type;
     this.clicked = props.clicked;
-    this.state = {
-      spotted: false,
-      isLitter: false
-    };
+    // this.state = {
+    //   spotted: false,
+    //   isLitter: false
+    // };
   }
   spotted = () => {
-    console.log("BEFORE");
-    console.log(this.state);
-    console.log("AFTER");
     // Logic here
-    if (this.props.type === "litter" && !this.state.spotted) {
+    if (this.props.type === "litter" && !this.props.spotted) {
       console.log("this is litter");
-      this.setState({
-        isLitter: true,
-        spotted: true
-      });
-    } else if (!this.state.spotted) {
+      // this.setState({
+      //   isLitter: true,
+      //   spotted: true
+      // });
+    } else if (!this.props.spotted) {
       console.log("this is not litter, get a red x");
     } else {
       console.log("do nothing");
     }
 
-    this.setState({
-      spotted: true
-    });
-    console.log(this.state);
+    //   this.setState({
+    //     spotted: true
+    //   }
+    // );
+    console.log(this);
   };
   // Spot method
   // If not clicked - do a green check or red x
   // If clicked already, do nothing
 
+  markClicked = () => {
+    this.props.clicked = true;
+  };
+
   render() {
-    let containerClass = classNames({});
+    // let containerClass = classNames({});
     // let testThing = [`game-item ${type}`];
     // if (this.state.clicked){
     //   testThing.push("spotted-litter::before")
@@ -71,7 +73,8 @@ GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
   type: PropTypes.string,
-  clicked: PropTypes.bool.isRequired
+  clicked: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default GameItem;

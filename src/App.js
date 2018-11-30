@@ -38,9 +38,9 @@ class App extends Component {
     // this.enableSpawner();
   }
 
-  onItemClicked = () => {
+  onItemClicked = itemIndex => {
     // Fill this in!
-    console.log("TEST");
+    console.log(itemIndex);
   };
 
   render() {
@@ -53,6 +53,8 @@ class App extends Component {
           key={item.id} // Key - to help React with performance
           type={item.type} // Type - used to determine what you have clicked on
           clicked={item.clicked} // Clicked = used to determine if item has been clicked on
+          index={i} //index to identify object
+          markClickedCallback={this.onItemClicked} // passing function to child gameitem as a prop
           // Additional props (event callbacks, etc.) can be passed here
         />
       );
