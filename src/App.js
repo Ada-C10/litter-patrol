@@ -38,12 +38,13 @@ class App extends Component {
     this.enableSpawner();
   }
 
-  incrementPoints = (itemType) => {
-    if (itemType === "litter") {
-      this.setState({
-        score: this.score + 1
-      })
-    }
+
+  incrementPoints = (event) => {
+    // if (itemType === "litter") {
+    this.setState({
+      points: this.state.points +1
+    })
+    // }
   }
 
   render() {

@@ -17,19 +17,19 @@ class GameItem extends Component {
 
   changedToCheck = () => {
     if (!this.state.checked){
-      this.setState({
-        _checked: true,
-      });
+
       if (this.props.itemType === "litter") {
-        console.log(this.props.incrementLitterScore)
-        // this.props.incrementLitterScore(this.props.itemType)
+  
+        this.props.incrementLitterScore()
 
         this.setState({
+          _checked: true,
           _divClass: "game-item spotted-litter"
         })
       }
       else{
         this.setState({
+          _checked: true,
           _divClass: "game-item spotted-nature"
         })
       }
