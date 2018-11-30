@@ -41,6 +41,7 @@ class App extends Component {
 
   // changes score
   onItemClicked = () => {
+    this.setState({points: this.state.points + 1})
     // Fill this in!
   }
 
@@ -52,6 +53,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               clickedCallback={this.onItemClicked} // not calling the fuction, just passing it
              />;
     });
 

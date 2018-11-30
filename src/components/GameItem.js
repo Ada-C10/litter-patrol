@@ -22,7 +22,7 @@ class GameItem extends Component {
     //
     if (this.state.type === "litter") {
       // and increse score by one by calling function in onItemClicked in App because app contains score
-
+      this.props.clickedCallback()
       this.setState({ class: "spotted-litter" });
     } else {
       this.setState({ class: "spotted-nature" });
