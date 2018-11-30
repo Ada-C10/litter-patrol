@@ -18,7 +18,7 @@ clickItem = () => {
   });
 
   if (this.props.type === "litter") {
-    this.props.litterClick();
+    this.props.litterClickCallback();
   }
 
 
