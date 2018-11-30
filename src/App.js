@@ -40,7 +40,7 @@ class App extends Component {
 
   onItemClicked = itemIndex => {
     // Fill this in!
-    this.props.markClickedCallback(this.props.index);
+    this.setState({ points: this.state.points + 1 });
   };
 
   render() {
@@ -54,7 +54,7 @@ class App extends Component {
           type={item.type} // Type - used to determine what you have clicked on
           clicked={item.clicked} // Clicked = used to determine if item has been clicked on
           index={i} //index to identify object
-          markItemClicked={this.onItemClicked()} // passing function to child gameitem as a prop
+          clickCallback={this.onItemClicked} // passing function to child gameitem as a prop
           // Additional props (event callbacks, etc.) can be passed here
         />
       );

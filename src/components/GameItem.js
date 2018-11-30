@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import classNames from "classnames";
 import "../App.css";
 import ItemIcons from "../ItemIcons.js";
 import PropTypes from "prop-types";
@@ -8,47 +7,42 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.type = props.type;
-    this.clicked = props.clicked;
-    // this.state = {
-    //   spotted: false,
-    //   isLitter: false
-    // };
+    this.state = {
+      spotted: false,
+      isLitter: false
+    };
   }
   spotted = () => {
     // Logic here
     if (this.props.type === "litter" && !this.props.spotted) {
       console.log("this is litter");
-      // this.setState({
-      //   isLitter: true,
-      //   spotted: true
-      // });
+      // TODO - Make class name be returned TODO
+      this.setState({
+        isLitter: true,
+        spotted: true
+      });
+      this.className = "game-item.spotted-litter::before";
+      console.log(this);
     } else if (!this.props.spotted) {
       console.log("this is not litter, get a red x");
+      this.setState({
+        spotted: true
+      });
+      this.className = "game-item.spotted-nature::before";
+      console.log(this);
     } else {
       console.log("do nothing");
+      this.setState({
+        spotted: true
+      });
     }
-
-    //   this.setState({
-    //     spotted: true
-    //   }
-    // );
-    console.log(this);
   };
-  // Spot method
-  // If not clicked - do a green check or red x
-  // If clicked already, do nothing
 
   markClicked = () => {
     this.props.clicked = true;
   };
 
   render() {
-    // let containerClass = classNames({});
-    // let testThing = [`game-item ${type}`];
-    // if (this.state.clicked){
-    //   testThing.push("spotted-litter::before")
-    // }
-
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer // use props.layer to set z-index, so we display ontop of background
@@ -58,7 +52,8 @@ class GameItem extends Component {
     const icon = ItemIcons[type];
 
     return (
-      <div className={`game-item`} style={itemStyle} onClick={this.spotted}>
+      // TODO make className dynamic
+      <div className={"game-item"} style={itemStyle} onClick={this.spotted}>
         <img src={icon} alt="Item" className="icon-item" />
       </div>
     );
