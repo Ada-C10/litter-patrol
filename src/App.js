@@ -57,8 +57,8 @@ class App extends Component {
                layer={100 + i}
                key={item.id}
                itemType={item.type}
-               isLitter={item.isLitter}
-               hasBeenClicked={item.hasBeenClicked} />
+               hasBeenClicked= {false}
+               markClickedCallback ={this.markClicked}/>
     });
 
 
