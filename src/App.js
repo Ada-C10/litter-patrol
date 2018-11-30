@@ -8,7 +8,7 @@ class App extends Component {
   config = {
     itemTypes: {
       // type: spawn rate (weighting)
-      litter:  20,
+      litter:  10,
       rock:     5,
       bush:     5,
       flower:   5,
@@ -39,8 +39,13 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (e) => {
     // Fill this in!
+    this.setState({
+      points: this.state.points + e 
+
+    });
+    console.log(this.state.points)
   }
 
   render() {
@@ -50,6 +55,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               onClick={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
