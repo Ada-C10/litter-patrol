@@ -38,7 +38,7 @@ class GameItem extends Component {
         if (this.state.hasBeenClicked && this.props.itemType === "litter") {
             overlay = "game-item spotted-litter";
         } else if (this.state.hasBeenClicked) {
-            overlay = "game-item spotted nature"
+            overlay = "game-item spotted-nature"
 
       };
         // return overlay;
