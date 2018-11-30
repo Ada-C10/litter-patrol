@@ -39,19 +39,35 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  //   onItemClicked = () => {
+  //     if (itemType === "litter") {
+  //       this.setState({
+  //
+  //       });
+  //     }
+  //     // if prop type is 'litter', assign css class spotted-litter, else assign spotted-nature
+  //   }
+  // }
+
+  onItemClicked = (type) => {
+    // console.log(type);
+    if (type === "litter"){
+      let totalPoints =
+      Number(this.state.points) + 1;
+      this.setState({points: `${totalPoints}`});
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
+        height={item.height}     // Height - used for a CSS style to position on the screen
+        layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+        key={item.id}            // Key - to help React with performance
 
-               type={item.type}         // Additional props (event callbacks, etc.) can be passed here
-             />;
+        type={item.type}         // Additional props (event callbacks, etc.) can be passed here
+        getPointsCallback={ this.onItemClicked }
+        />;
     });
 
     return (
@@ -150,7 +166,7 @@ class App extends Component {
 
   levelBackground() {
     const layers = ['clouds-1', 'clouds-2', 'clouds-3', 'clouds-4',
-                    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
+    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
