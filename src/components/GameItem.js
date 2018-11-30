@@ -11,13 +11,11 @@ class GameItem extends Component {
     };
   };
 
-  onItemClicked = () => {
+  onIconClicked = () => {
     this.setState({
-      isClicked: !this.state.isClicked
+      isClicked: true
     });
-    console.log(this.state.isClicked);
-    // console.log('I am here');
-    // console.log(this.props.type);
+    this.props.onItemClickedCallback(this.props.type);
   };
 
   render() {
@@ -26,20 +24,17 @@ class GameItem extends Component {
       clickType = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
     };
 
-    // console.log("game-item " + clickType);
-
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
       iconType: this.props.type,
     };
 
-    // console.log(itemStyle);
     // Update this to select the correct icon for each item
-    const icon = ItemIcons[itemStyle.iconType];//ItemIcons.rock;
+    const icon = ItemIcons[itemStyle.iconType];
 
     return (
-      <div className={"game-item " + clickType} style={itemStyle} onClick={ this.onItemClicked }>
+      <div className={"game-item " + clickType} style={itemStyle} onClick={ this.onIconClicked }>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

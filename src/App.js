@@ -36,14 +36,15 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  // onItemClicked = (event) => {
-  //   // Fill this in!
-  //   console.log('I am here');
-  //   console.log(event.target);
-  // }
+  onItemClicked = (iconType) => {
+    if (iconType === 'litter') {
+      const updatedPoints = this.state.points + 1;
+      this.setState({points: updatedPoints})
+    }
+  }
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -54,6 +55,7 @@ class App extends Component {
                type={item.type}         // Type - denotes item icon to be used
 
                // Additional props (event callbacks, etc.) can be passed here
+               onItemClickedCallback = {this.onItemClicked} // Event Handler passed through props
              />;
     });
 
