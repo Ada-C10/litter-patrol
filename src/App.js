@@ -36,11 +36,17 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
+ /* .spotted-litter
+    .spotted-nature */
+  /*When a player clicks on a game item that has not yet been
+   clicked upon, the item displays either:
+  a green check, if the item has type 'litter'
+  a red X, otherwise */
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({points: this.state.points + 1 });
   }
 
   render() {
@@ -50,6 +56,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               litterCallback={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
@@ -58,7 +65,7 @@ class App extends Component {
     return (
       <div className="game">
         <section className="hud">
-          <h2 className="score">Litter Spotted: { this.state.points }</h2>
+          <h2 className="score">Litter Spotted: { this.state.points}</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 
