@@ -4,7 +4,17 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      isTagged: false,
+    }
+  }
+
+  onItemClicked = () => {
+    this.setState({isTagged: true});
+  }
 
   render() {
     const itemStyle = {
@@ -13,11 +23,18 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const item = this.props.type
+    const icon = ItemIcons[item]
+
+    let iconCheck = ""
+
+    if (this.state.isTagged) {
+      this.props.type === "litter" ? iconCheck = " spotted-litter" : iconCheck = " spotted-nature";
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${iconCheck}`} style={itemStyle} onClick={this.onItemClicked}>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.onItemClicked}></img>
       </div>
     );
   }
