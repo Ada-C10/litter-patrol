@@ -9,6 +9,24 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    }
+  }
+
+  onItemClick = () => {
+    console.log(this);
+    this.setState({clicked: !this.state.clicked});
+
+    if (this.props.type === "litter") {
+      this.props.onItemClickedCallback()
+    }
+
+
+  }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -16,12 +34,14 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const item = this.props.type
+    const item = this.props.type;
     const icon = ItemIcons[item];
+    const itemClass = (this.props.type === "litter") ? "spotted-litter" : "spotted-nature"
+    const clickedClass = this.state.clicked ? `game-item ${itemClass}` : "game-item"
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={clickedClass} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.onItemClick}></img>
       </div>
     );
   }
