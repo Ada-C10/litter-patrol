@@ -11,6 +11,7 @@ class GameItem extends Component {
       divClass: "game-item"
     };
   }
+
   //GameItem component is the only one that can actually handle the click event for that specific item, so you will need to write code to connect the two components.
   changedToCheck = event => {
     if (!this.state.checked) {
@@ -20,7 +21,8 @@ class GameItem extends Component {
 
       if (this.props.type === "litter") {
         this.setState({
-          divClass: "game-item spotted-litter"
+          divClass: "game-item spotted-litter",
+          points: this.state.points
         });
       } else {
         this.setState({
@@ -45,6 +47,7 @@ class GameItem extends Component {
         style={itemStyle}
         id={this.props.index}
         onClick={this.changedToCheck}
+        points={this.state.points}
       >
         <img src={icon} alt="Item" className="icon-item" />
       </div>
