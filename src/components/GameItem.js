@@ -13,12 +13,16 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const type = ItemIcons[this.props.type];
+
+
 
     return (
+      <section>
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={type} alt="Item" className="icon-item"></img>
       </div>
+    </section>
     );
   }
 }
