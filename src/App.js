@@ -34,18 +34,19 @@ class App extends Component {
     this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    //this.enableSpawner();
+    this.enableSpawner();
 
     //console.log(this.state.items[0]);
   }
 
+  // changes score
   onItemClicked = () => {
     // Fill this in!
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
-      console.log(item)
+      //console.log(item)
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
