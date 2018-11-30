@@ -39,10 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  // onItemClicked = (itemIndex) => {
-  //   // Fill this in!
-  //   console.log(itemIndex);
-  // }
+
+
+  updatePoints = () => {
+    let newPoints = this.state.points + 1
+    this.setState({points: newPoints})
+  }
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -52,7 +54,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                type={item.type}         //type (rock, flower, etc.)
                index={item.id}
-               onItemClickedCallback= {this.onItemClicked}
+               updatePointsCallback= {this.updatePoints}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
