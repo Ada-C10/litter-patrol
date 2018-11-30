@@ -4,8 +4,6 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-
-
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -13,7 +11,11 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const item = this.props.type
+    const icon = ItemIcons[item];
+
+
+
 
     return (
       <div className="game-item" style={itemStyle}>
