@@ -16,8 +16,8 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     // const icon = ItemIcons.rock;
-      const icon = this.props.itemType;
-      console.log(icon);
+      const icon = ItemIcons[this.props.itemType];
+      
     // ItemIcons { litter, rock, bush, flower, mushroom}
     return (
       <div className="game-item" style={itemStyle}>
