@@ -18,9 +18,6 @@ class GameItem extends Component {
       isSpotted: true,
     });
   }
-
-
-
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
