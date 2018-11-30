@@ -39,9 +39,9 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (itemIndex) => {
     // Fill this in!
-
+    console.log(itemIndex);
   }
 
 
@@ -58,7 +58,8 @@ class App extends Component {
                key={item.id}
                itemType={item.type}
                hasBeenClicked= {false}
-               markClickedCallback ={this.markClicked}/>
+               index = {i}
+               markClickedCallback ={this.onItemClicked}/>
     });
 
 

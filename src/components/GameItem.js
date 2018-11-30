@@ -8,20 +8,26 @@ class GameItem extends Component {
     super(props);
   }
 
+  markClickedClickHandler = () => {
+    console.log(`They clicked a ${this.props.itemType}!`);
+    this.props.markClickedCallback(this.props.index);
+  }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
+    // Update this to select the correct icon for each item - done
     // const icon = ItemIcons.rock;
       const icon = ItemIcons[this.props.itemType];
-      
+
     // ItemIcons { litter, rock, bush, flower, mushroom}
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.markClickedClickHandler}>
+        </img>
       </div>
     );
   }
