@@ -26,12 +26,12 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -41,9 +41,10 @@ class App extends Component {
 
   onItemClicked = (itemIndex) => {
     // Fill this in!
-    console.log(itemIndex);
     let updatedItems = this.state.items;
-    updatedItems[itemIndex].hasBeenClicked = true;
+    // updatedItems[itemIndex].hasBeenClicked = true;
+
+
     this.setState({items: updatedItems});
     console.log(updatedItems[itemIndex]);
   }
