@@ -41,8 +41,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (itemType) => {
+    console.log(`Inside the onItemClicked for item: ${itemType}`);
+    if(itemType === "litter"){
+      let totalPoints = Number(this.state.points) + 1;
+      this.setState({points: `${totalPoints}`});
+    }
   }
 
   render() {
@@ -53,6 +57,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                thing={item.type}
+               itemClickedCallback = {this.onItemClicked}
              />;
     });
 

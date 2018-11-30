@@ -16,13 +16,13 @@ class GameItem extends Component {
 
   markIcon = () => {
     console.log("In Game Item Handler");
-
     console.log(this.state.thing);
 
     let finalStyle = "";
     this.state.thing === "litter"? finalStyle = "game-item spotted-litter" : finalStyle = "game-item spotted-nature";
 
     this.setState({style: `${finalStyle}`});
+    this.props.itemClickedCallback(this.state.thing);
   }
 
   render() {
