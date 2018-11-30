@@ -33,15 +33,16 @@ class GameItem extends Component {
 
   render() {
     const itemStyle = {
-      bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
-      zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+      bottom: `${this.props.height}px`,
+      zIndex: this.props.layer,
     };
 
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className={"game-item " + this.markImage()} style={itemStyle} onClick={ this.onItemClicked }>
-        <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked }></img>
+      // Added the onClick to both div and img elements to increase surface area of click
+      <div className={"game-item " + this.markImage()} style={itemStyle} onClick={ this.onItemClicked } disabled={this.props.isClicked}>
+        <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked } disabled={this.props.isClicked}></img>
       </div>
     );
   }
