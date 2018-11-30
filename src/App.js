@@ -39,21 +39,21 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = (itemIndex) => {
+  onItemClicked = (itemIndex, type) => {
     // Fill this in!
     let updatedItems = this.state.items;
     // updatedItems[itemIndex].hasBeenClicked = true;
+    //  TODO: Delete all of markClicked logic in App?
 
+    let pointSum = this.state.points + 1;
+
+    if (type==="litter") {
+      this.setState({points: pointSum})
+    };
 
     this.setState({items: updatedItems});
-    console.log(updatedItems[itemIndex]);
   }
 
-
-// Height - used for a CSS style to position on the screen
- // Layer - used for a CSS style to show items on-top of bg
- // Key - to help React with performance
- // Additional props (event callbacks, etc.) can be passed in render return
 
   render() {
     const items = this.state.items.map((item, i) => {

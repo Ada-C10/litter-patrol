@@ -15,7 +15,7 @@ class GameItem extends Component {
 
   markClickedClickHandler = () => {
     console.log(`They clicked a ${this.props.itemType}!`);
-    this.props.markClickedCallback(this.props.index);
+    this.props.markClickedCallback(this.props.index, this.props.itemType);
     this.setState({hasBeenClicked: true})
 
   }
@@ -32,8 +32,8 @@ class GameItem extends Component {
       const icon = ItemIcons[this.props.itemType];
 
 
-      // const ifLitter = this.props.itemType === "litter" && this.state.hasBeenClicked? "spotted-litter": "spotted-nature";
-      // giveOverlay = () => {
+  // refactor or add back into a function?
+    // giveOverlay = () => {
         let overlay = "game-item";
         if (this.state.hasBeenClicked && this.props.itemType === "litter") {
             overlay = "game-item spotted-litter";
@@ -53,7 +53,6 @@ class GameItem extends Component {
     );
   }
 }
-// <img src={icon} alt="Item" className={`icon-item ${ifLitter}`}
 
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
