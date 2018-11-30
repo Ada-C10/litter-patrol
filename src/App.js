@@ -61,7 +61,6 @@ class App extends Component {
                layer={100 + i}
                key={item.id}
                itemType={item.type}
-               hasBeenClicked= {false}
                index = {i}
                markClickedCallback ={this.onItemClicked}/>
     });
