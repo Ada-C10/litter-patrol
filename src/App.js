@@ -38,8 +38,9 @@ class App extends Component {
 
     console.log(this.state);
   }
-
-  onItemClicked = () => {
+  //The App component should have the code that actually updates the score,
+  onItemClicked = event => {
+    this.setState({ points: +1 });
     // Fill this in!
   };
 

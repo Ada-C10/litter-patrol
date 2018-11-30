@@ -11,7 +11,7 @@ class GameItem extends Component {
       divClass: "game-item"
     };
   }
-
+  //GameItem component is the only one that can actually handle the click event for that specific item, so you will need to write code to connect the two components.
   changedToCheck = event => {
     if (!this.state.checked) {
       this.setState({
