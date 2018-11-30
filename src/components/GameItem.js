@@ -10,24 +10,27 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
-      divClass: "game-item"
+      _checked: false,
+      _divClass: "game-item"
     }
   }
 
-  changedToCheck = (event) => {
+  changedToCheck = () => {
     if (!this.state.checked){
       this.setState({
-        checked: true,
+        _checked: true,
       });
       if (this.props.itemType === "litter") {
+        console.log(this.props.incrementLitterScore)
+        // this.props.incrementLitterScore(this.props.itemType)
+
         this.setState({
-          divClass: "game-item spotted-litter"
+          _divClass: "game-item spotted-litter"
         })
       }
       else{
         this.setState({
-          divClass: "game-item spotted-nature"
+          _divClass: "game-item spotted-nature"
         })
       }
     }
@@ -43,13 +46,12 @@ class GameItem extends Component {
     const icon = ItemIcons[`${this.props.itemType}`];
 
     return (
-      <div className={this.state.divClass} style={itemStyle} id={this.props.index} onClick={this.changedToCheck}>
+      <div className={this.state._divClass} style={itemStyle} id={this.props.index} onClick={this.changedToCheck}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }
 }
-
 
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
