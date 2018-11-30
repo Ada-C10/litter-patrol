@@ -30,29 +30,19 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    // this.enableSpawner();
+    this.enableSpawner();
 
   }
 
-  // onItemClicked = (event) => {
-  //   this.setState({clicked: true});
-  //   this.setState({recordOf: this.setClass()})
-  //   console.log(this.state.recordOf)
-  // }
 
-  // setClass = () => {
-  //   // console.log("getting here")
-  //   // console.log(this.props.type)
-  //   // if (this.props.type == "litter"){
-  //   //   return "spotted-litter"
-  //   // } else {
-  //   //   return "spotted-nature"
-  //   // }
-  // }
+  incrementScore = () => {
+    let count = this.state.points + 1
+    this.setState({points: count })
+  }
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -63,6 +53,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               incrementScoreCallback = {this.incrementScore}
              />;
     });
 

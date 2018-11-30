@@ -8,23 +8,25 @@ class GameItem extends Component {
     super(props);
 
     this.state = {
-      clicked: false,
-      recordOf: ""
+      spotted: false,
+      styleItem: ""
     }
 
   }
 
   onItemClicked = () => {
-    this.setState({clicked: true});
-    this.setState({recordOf: this.setClass()})
+    this.setState({spotted: true});
+    this.setState({styleItem: this.setClass()})
+    
+    if (this.props.type === "litter") {
+      this.props.incrementScoreCallback()
+    }
   }
 
   setClass = () => {
-    if (this.props.type === "litter"){
-      return "spotted-litter"
-    } else {
-      return "spotted-nature"
-    }
+    console.log("setting style now"
+    )
+    return this.props.type === "litter" ? "spotted-litter" : "spotted-nature"
   }
 
   render() {
@@ -34,13 +36,14 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons[`${this.props.type}`]
+    const icon = ItemIcons[this.props.type]
+
     return (
-      <button onClick={ this.onItemClicked } >
-        <div className={"game-item " + this.state.recordOf} style={itemStyle}>
+
+        <div className={"game-item " + this.state.styleItem} style={itemStyle} onClick={ this.onItemClicked }>
           <img src={icon} alt="Item" className="icon-item"/>
         </div>
-      </button>
+
     );
   }
 }
