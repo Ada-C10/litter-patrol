@@ -17,38 +17,43 @@ class GameItem extends Component {
     this.setState({
       spotted: true
     });
-  };
 
-
-
-
-  render() {
-    const itemStyle = {
-      bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
-      zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
-      type: this.props.type
-    };
-
-    // Update this to select the correct icon for each item
-    const iconGenre = itemStyle.type;
-    const icon = ItemIcons[iconGenre];
-
-    let spottedIndicator = '';
-    if (this.state.spotted) {
-      const didISpotLitter = iconGenre === 'litter'
-      spottedIndicator = didISpotLitter ? 'spotted-litter' : 'spotted-nature';
+    if (this.props.type === 'litter') {
+      this.props.itemClickCallback();
     }
 
+};
 
 
-    return (
-      <div className='game-item'  style={itemStyle} onClick={this.onItemClick}>
-        <div className = {spottedIndicator}>
-        <img src={icon} alt="Item" className="icon-item"></img>
-      </div>
-      </div>
-    );
+
+
+render() {
+  const itemStyle = {
+    bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
+    zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+    type: this.props.type
+  };
+
+  // Update this to select the correct icon for each item
+  const iconGenre = itemStyle.type;
+  const icon = ItemIcons[iconGenre];
+
+  let spottedIndicator = '';
+  if (this.state.spotted) {
+    const didISpotLitter = iconGenre === 'litter'
+    spottedIndicator = didISpotLitter ? 'spotted-litter' : 'spotted-nature';
   }
+
+
+
+  return (
+    <div className='game-item'  style={itemStyle} onClick={this.onItemClick}>
+      <div className = {spottedIndicator}>
+        <img src={icon} alt={iconGenre} className="icon-item"></img>
+      </div>
+    </div>
+  );
+}
 }
 
 
