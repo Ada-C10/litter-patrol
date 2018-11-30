@@ -39,8 +39,10 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (type) => {
     // Fill this in!
+    console.log('in the app type:')
+    console.log(type);
   }
 
   render() {
@@ -49,7 +51,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               type={item.type}
+               onItemClickedCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
@@ -60,12 +63,10 @@ class App extends Component {
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
-
-        <section className="level">
-          { this.levelBackground() }
+        <section className="level" onClick={this.onItemClicked}>
+          { this.levelBackground () }
           { items }
-        </section>
-
+          </section>
       </div>
     );
   }
