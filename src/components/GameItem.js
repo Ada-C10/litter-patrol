@@ -23,9 +23,10 @@ class GameItem extends Component {
     // const icon = ItemIcons.rock;
       const icon = ItemIcons[this.props.itemType];
 
+      const ifLitter = this.props.itemType == "litter" ? "spotted-litter::before": ".spotted-nature::before";
     // ItemIcons { litter, rock, bush, flower, mushroom}
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${ifLitter}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item" onClick={this.markClickedClickHandler}>
         </img>
       </div>
