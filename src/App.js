@@ -14,6 +14,7 @@ class App extends Component {
       flower:   5,
       mushroom: 5,
     },
+    // 1.2
     spawnRate: 1.2, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
@@ -34,6 +35,7 @@ class App extends Component {
     //this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
+    //enableSpawner() => spawnItems() => tick() => spawnItem() => return {id, type, expiration, height};
     this.enableSpawner();
 
     console.log(this.state);
@@ -50,7 +52,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
-               // Additional props (event callbacks, etc.) can be passed here
+               thing={item.type}
              />;
     });
 
