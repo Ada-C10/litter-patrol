@@ -10,8 +10,9 @@ class GameItem extends Component {
       displayTick: false,
     };
   }
-
-  onIconClick = () => {
+   //event handler
+   //when player clicks, modifies state of displayTick
+    onIconClick = () => {
     this.setState({ displayTick: true });
     this.props.onItemClickedCallback(this.props.type);
   };
@@ -21,7 +22,7 @@ class GameItem extends Component {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
-      type: this.props.type,
+      type: this.props.type, //display the correct icon for each item.
     };
 
     // Update this to select the correct icon for each item
@@ -30,7 +31,10 @@ class GameItem extends Component {
     console.log(iconType);
     const icon = ItemIcons[iconType];
 
-    let tickDisplay = null;
+
+    //(this.state.displayTick)= true
+    //if clicked =correct icon, if icon type is litter, gets assigns class to render green check, if not, class assigns to render red x
+    let tickDisplay = false;
     if (this.state.displayTick) {
       tickDisplay = iconType === 'litter' ? 'spotted-litter' : 'spotted-nature';
     };

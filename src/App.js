@@ -4,6 +4,7 @@ import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
 
+
 class App extends Component {
   config = {
     itemTypes: {
@@ -24,6 +25,7 @@ class App extends Component {
   constructor() {
     super();
 
+    //initial state
     this.state = {
       items: [],
       points: 0,
@@ -40,20 +42,19 @@ class App extends Component {
   }
 
   onItemClicked = (type) => {
-    // Fill this in!
     console.log('in the app type:')
     console.log(type);
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
+      //calls GameItem component
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-               type={item.type}
-               onItemClickedCallback={this.onItemClicked}
-               // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}         //Type - attribute of const itemStyle in GameItem
+               onItemClickedCallback={this.onItemClicked} //  props (event callbacks, etc.) can be passed here
              />;
     });
 
