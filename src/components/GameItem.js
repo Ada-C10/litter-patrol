@@ -4,9 +4,19 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
-    height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired,
+
+  //I want to add either a check or 'x' on icon when clicked - if icon is equal to 'litter' type; add css 'check' else add css 'x'.
+  onItemSelected = () => {
+    // if (this.props.type === litter) {
+    // div.className.remove()
+    // dive.className.add(gameItem + litter)
+    //   className="spotted-litter"
+    // } else {
+    // div.className.remove()
+    // dive.className.add(gameItem + trash)
+    //   className="spotted-nature"
+    // }
+    // console.log(this.props.type);
   }
 
   render() {
@@ -16,14 +26,29 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
+    const litter = "spotted-litter";
+    const trash = "spotted-nature";
+    const gameItem = "game-item";
+
+    //Trying to add if onClick - div className is changed
+    const itemChosen = icon === 'litter' ? "spotted-litter" : "spotted-nature";
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={gameItem} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item"
+         //onClick={this.onItemSelected}
+          >
+        </img>
       </div>
     );
   }
 }
+
+GameItem.propTypes = {
+  height: PropTypes.number.isRequired,
+  layer: PropTypes.number.isRequired,
+};
 
 export default GameItem;
