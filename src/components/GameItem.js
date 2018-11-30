@@ -9,7 +9,7 @@ class GameItem extends Component {
 
     this.state = {
       spotted: false,
-      styleItem: ""
+      itemStyleClass: ""
     }
 
   }
@@ -17,15 +17,14 @@ class GameItem extends Component {
   onItemClicked = () => {
     this.setState({spotted: true});
     this.setState({styleItem: this.setClass()})
-    
+
     if (this.props.type === "litter") {
       this.props.incrementScoreCallback()
     }
   }
 
   setClass = () => {
-    console.log("setting style now"
-    )
+
     return this.props.type === "litter" ? "spotted-litter" : "spotted-nature"
   }
 
@@ -39,8 +38,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type]
 
     return (
-
-        <div className={"game-item " + this.state.styleItem} style={itemStyle} onClick={ this.onItemClicked }>
+        <div className={"game-item " + this.state.itemStyleClass} style={itemStyle} onClick={ this.onItemClicked }>
           <img src={icon} alt="Item" className="icon-item"/>
         </div>
 

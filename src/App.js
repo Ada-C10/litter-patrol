@@ -40,8 +40,7 @@ class App extends Component {
 
 
   incrementScore = () => {
-    let count = this.state.points + 1
-    this.setState({points: count })
+    this.setState({points: this.state.points + 1 })
   }
 
   render() {
