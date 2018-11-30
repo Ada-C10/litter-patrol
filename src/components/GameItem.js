@@ -14,7 +14,7 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     this.setState({isTagged: true});
-    
+
     if (this.props.type === "litter") {
       this.props.updatePointsCallback();
     }
@@ -33,7 +33,7 @@ class GameItem extends Component {
     let iconCheck = ""
 
     if (this.state.isTagged) {
-      this.props.type === "litter" ? iconCheck = " spotted-litter" : iconCheck = " spotted-nature";
+      this.props.type === "litter" ? iconCheck = "spotted-litter" : iconCheck = "spotted-nature";
     }
 
     return (
