@@ -18,7 +18,7 @@ class App extends Component {
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
-    itemLifetime: 10 * 1000 // 10 seconds (should be longer than CSS animation time)
+    itemLifetime: 70 * 1000 // 10 seconds (should be longer than CSS animation time)
   };
 
   constructor() {
@@ -26,22 +26,21 @@ class App extends Component {
 
     // state is set to an empty item array/0 points
     this.state = {
-      items: ["rock", "mushroom"],
+      items: [],
       points: 0
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    this.enableSpawner();
-
-    console.log(this.state);
+    // this.enableSpawner();
   }
 
   onItemClicked = () => {
     // Fill this in!
+    console.log("TEST");
   };
 
   render() {
@@ -52,7 +51,8 @@ class App extends Component {
           height={item.height} // Height - used for a CSS style to position on the screen
           layer={100 + i} // Layer - used for a CSS style to show items on-top of bg
           key={item.id} // Key - to help React with performance
-          type={item.type}
+          type={item.type} // Type - used to determine what you have clicked on
+          clicked={item.clicked} // Clicked = used to determine if item has been clicked on
           // Additional props (event callbacks, etc.) can be passed here
         />
       );
