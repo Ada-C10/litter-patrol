@@ -4,7 +4,21 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      litterSpottedClass: "",
+    };
+  }
 
+  spotLitter = () =>{
+    if (this.props.type === "litter"){
+      this.setState({ litterSpottedClass: "spotted-litter" });
+    } else {
+      this.setState({ litterSpottedClass: "spotted-nature" });
+    }
+    this.props.pointsCallback(this.props.index)
+  }
 
   render() {
     const itemStyle = {
@@ -14,12 +28,14 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     // const icon = ItemIcons.rock;
-
-    let icon = ItemIcons[this.props.type]
+    const icon = ItemIcons[this.props.type]
 
     return (
-      <div className="game-item" style={itemStyle}>
-      <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${this.state.litterSpottedClass}`}
+      style={itemStyle}
+      onClick={ this.spotLitter }>
+      <img src={icon} alt="Item" className="icon-item">
+      </img>
       </div>
     );
   }
