@@ -24,7 +24,7 @@ class GameItem extends Component {
     const pointsOfItems = this.props.type === "litter" ? 1 : 0;
     // function passed on from parent (App.js) through props
     //Game sends info about points by passing in data to send to parent
-    this.props.onClick(pointsOfItems);
+    this.props.onClickForPoints(pointsOfItems);
   }
 
 
