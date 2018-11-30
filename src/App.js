@@ -39,11 +39,17 @@ class App extends Component {
     console.log(this.state);
   }
   //The App component should have the code that actually updates the score,
-  onItemClicked = event => {
-    this.setState({ points: this.state.points + 1 });
-    // Fill this in!
+  // onItemClickedCallback = event => {
+  //   this.setState({ points: this.state.points + 1 });
+  //   // Fill this in!
+  // };
+  incrementPoints = event => {
+    // if (itemType === "litter") {
+    this.setState({
+      points: this.state.points + 1
+    });
+    // }
   };
-
   render() {
     const items = this.state.items.map((item, i) => {
       return (
@@ -52,6 +58,7 @@ class App extends Component {
           layer={100 + i} // Layer - used for a CSS style to show items on-top of bg
           key={item.id} // Key - to help React with performance
           type={item.type}
+          clickCallback={this.incrementPoints}
           // Additional props (event callbacks, etc.) can be passed here
         />
       );
