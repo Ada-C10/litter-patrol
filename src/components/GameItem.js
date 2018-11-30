@@ -5,6 +5,36 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
+  constructor(props){
+   super(props);
+
+   this.state ={
+     clickStatus: false,
+   };
+}
+
+  onIconClick = () => {
+      if( this.state.clickStatus === false ) {
+         this.setState({clickStatus: true});
+         if(this.props.type === "litter"){
+           this.props.onItemClickedCallback();
+         }
+       }
+  }
+
+  renderItemClass=()=> {
+    if (this.state.clickStatus && this.props.type === "litter") {
+        return "game-item spotted-litter"
+
+    }else if (this.state.clickStatus && this.props.type !== "litter"){
+      return "game-item spotted-nature"
+
+    }else {
+       return "game-item"
+
+    }
+  }
+
 
   render() {
     const itemStyle = {
@@ -33,10 +63,11 @@ class GameItem extends Component {
       }
 
 
-
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={this.renderItemClass()} style={itemStyle}>
+
+        <img onClick={this.onIconClick} src={icon} alt="Item" className="icon-item"></img>
+
       </div>
     );
   }
