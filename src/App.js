@@ -39,8 +39,9 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  updatePoints = () => {
+    let point = this.state.points + 1
+    this.setState({points: point})
   }
 
   render() {
@@ -51,6 +52,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                type={item.type}
                onIconClickCallback={this.onIconClick}
+               updatePointsCallback={this.updatePoints}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

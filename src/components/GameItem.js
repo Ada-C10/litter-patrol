@@ -13,6 +13,10 @@ class GameItem extends Component {
 
   onIconClick = () => {
     this.setState({ isTagged: true});
+
+    if (this.props.type === "litter") {
+      this.props.updatePointsCallback();
+    }
   };
 
   render() {
