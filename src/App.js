@@ -31,26 +31,32 @@ class App extends Component {
 
     // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
+    // testItem.spotted = false;
     // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
-  }
+  onItemClicked = (itemIndex) => {
+    let updatedItems = this.state.items;
+
+    updatedItems[itemIndex].spotted = true;
+    this.setState({items: updatedItems });
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-               type ={item.type}
-             />;
+        height={item.height}
+        layer={100 + i}
+        key={item.id}
+        index={i}
+        spotted={item.spotted}
+        type={item.type}
+        markClickedCallback={this.onItemClicked}
+        />;
     });
 
     return (
@@ -116,7 +122,6 @@ class App extends Component {
 
     const expiration = time + this.config.itemLifetime;
     const height = Math.random() * this.config.spawnHeight + this.config.spawnFloor;
-
     return {id, type, expiration, height};
   }
 
@@ -149,7 +154,7 @@ class App extends Component {
 
   levelBackground() {
     const layers = ['clouds-1', 'clouds-2', 'clouds-3', 'clouds-4',
-                    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
+    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
