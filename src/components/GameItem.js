@@ -17,6 +17,7 @@ class GameItem extends Component {
     this.setState({
       isSpotted: true,
     });
+    this.props.onClickCallback(this.props.type === 'litter')
   }
   render() {
     const itemStyle = {
@@ -46,6 +47,7 @@ GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
+  onClickCallback: PropTypes.function,
 }
 
 export default GameItem;
