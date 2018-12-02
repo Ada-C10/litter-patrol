@@ -44,7 +44,14 @@ class App extends Component {
   onItemClicked = (type) => {
     console.log('in the app type:')
     console.log(type);
-  }
+
+    //wave 3
+    let totalPoints = this.state.points + 1;
+
+    if (type === "litter") {
+      this.setState({ points: totalPoints });
+    }
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {

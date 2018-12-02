@@ -10,7 +10,7 @@ class GameItem extends Component {
       displayTick: false,
     };
   }
-   //event handler
+   
    //when player clicks, modifies state of displayTick
     onIconClick = () => {
     this.setState({ displayTick: true });
