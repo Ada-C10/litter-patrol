@@ -30,8 +30,8 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -39,32 +39,46 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (index) => {
     // Fill this in!
+    let updatedPoints = this.state.points;
+    let updatedItems = this.state.items;
+    const item = this.state.items[index]
+
+    if(item.type === "litter" && !(item.clicked)){
+      updatedPoints += 1
+      updatedItems[index].clicked = true
+      this.setState({ points: updatedPoints });
+      this.setState({ items: updatedItems });
+    }
   }
 
   render() {
-    const items = this.state.items.map((item, i) => {
-      return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
 
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+    const items = this.state.items.map((item, i) => {
+
+      return <GameItem
+      height={item.height}     // Height - used for a CSS style to position on the screen
+      layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+      key={item.id}            // Key - to help React with performance
+      // Additional props (event callbacks, etc.) can be passed here
+      type={item.type}
+      pointsCallback={this.onItemClicked}
+      index={i}
+      />;
     });
 
     return (
       <div className="game">
-        <section className="hud">
-          <h2 className="score">Litter Spotted: { this.state.points }</h2>
-          <img className="logo" src={logo} alt="Litter Patrol logo" />
-        </section>
+      <section className="hud">
+      <h2 className="score">Litter Spotted: { this.state.points }</h2>
+      <img className="logo" src={logo} alt="Litter Patrol logo" />
+      </section>
 
-        <section className="level">
-          { this.levelBackground() }
-          { items }
-        </section>
+      <section className="level">
+      { this.levelBackground() }
+      { items }
+      </section>
 
       </div>
     );
@@ -140,7 +154,6 @@ class App extends Component {
         choice -= weight; // otherwise move past this entry
       }
     });
-
     return selectedType;
   }
 
@@ -150,10 +163,10 @@ class App extends Component {
 
   levelBackground() {
     const layers = ['clouds-1', 'clouds-2', 'clouds-3', 'clouds-4',
-                    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
+    'hills-1','hills-2','bushes','trees-1','trees-2','ground'];
     return (
       <div className="level-bg">
-        {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
+      {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
       </div>
     );
   }
