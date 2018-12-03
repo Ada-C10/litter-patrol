@@ -36,7 +36,31 @@ class GameItem extends Component {
   }
 
 
-  
+  render() {
+    const itemStyle = {
+      bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
+      zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+    };
+
+    // Update this to select the correct icon for each item
+    // const icon = ItemIcons.rock;
+
+     let icon = undefined;
+      if(this.props.type === 'rock') {
+        icon = ItemIcons.rock;
+      }
+      if(this.props.type === 'litter') {
+        icon = ItemIcons.litter;
+      }
+      if(this.props.type === 'flower') {
+        icon = ItemIcons.flower;
+      }
+      if(this.props.type === 'bush') {
+        icon = ItemIcons.bush;
+      }
+      if(this.props.type === 'mushroom') {
+        icon = ItemIcons.mushroom;
+      }
 
 
     return (
