@@ -4,6 +4,22 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasBeenClicked: false,
+    };
+  }
+
+
+
+  markClickedClickHandler = () => {
+    console.log(`They clicked a ${this.props.itemType}!`);
+    this.props.markClickedCallback(this.props.index, this.props.itemType);
+    this.setState({hasBeenClicked: true})
+
+  }
+
 
 
   render() {
@@ -12,17 +28,31 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // Update this to select the correct icon for each item - done
+      const icon = ItemIcons[this.props.itemType];
 
+
+  // refactor or add back into a function?
+    // giveOverlay = () => {
+        let overlay = "game-item";
+        if (this.state.hasBeenClicked && this.props.itemType === "litter") {
+            overlay = "game-item spotted-litter";
+        } else if (this.state.hasBeenClicked) {
+            overlay = "game-item spotted-nature"
+
+      };
+        // return overlay;
+      // }
+
+    // ItemIcons { litter, rock, bush, flower, mushroom}
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={overlay} style={itemStyle}>
+        <img src={icon} alt="Item" className={"icon-item"} onClick={this.markClickedClickHandler}>
+        </img>
       </div>
     );
   }
 }
-
 
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,

@@ -26,12 +26,12 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -39,20 +39,33 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (itemIndex, type) => {
     // Fill this in!
+    let updatedItems = this.state.items;
+    // updatedItems[itemIndex].hasBeenClicked = true;
+    //  TODO: Delete all of markClicked logic in App?
+
+    let pointSum = this.state.points + 1;
+
+    if (type==="litter") {
+      this.setState({points: pointSum})
+    };
+
+    this.setState({items: updatedItems});
   }
+
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+               height={item.height}
+               layer={100 + i}
+               key={item.id}
+               itemType={item.type}
+               index = {i}
+               markClickedCallback ={this.onItemClicked}/>
     });
+
 
     return (
       <div className="game">
@@ -162,7 +175,7 @@ class App extends Component {
     // Update the game state (active items) at a fixed rate
     const update = () => {
       const callback = () => {
-        this.updateTimer = setTimeout(update, 1000 / 8);
+        this.updateTimer = setTimeout(update, 10000 / 8);
       };
 
       const newState = this.tick(Date.now());
