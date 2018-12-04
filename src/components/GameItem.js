@@ -5,6 +5,26 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
+constructor(props) {
+  super(props);
+  this.state = {
+    spotted: false
+  };
+}
+
+clickItem = () => {
+  this.setState({
+    spotted: true
+  });
+
+  if (this.props.type === "litter") {
+    this.props.litterClickCallback();
+  }
+
+
+}
+
+
 
   render() {
     const itemStyle = {
@@ -12,12 +32,15 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
+
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
+    const iconClass = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
+    const itemClass = this.state.spotted ? `game-item + ${iconClass}` : 'game-item';
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={itemClass} style={itemStyle}>
+        <img src={icon} alt="Item" className='icon-item' onClick={this.clickItem}></img>
       </div>
     );
   }
