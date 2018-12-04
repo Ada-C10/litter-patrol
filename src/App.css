@@ -29,7 +29,7 @@ body {
   height: 250px;
   margin: 5px;
   cursor: pointer;
-
+  /* 4s */
   animation-duration: 4s;
   animation-name: item-move;
   animation-timing-function: linear;
