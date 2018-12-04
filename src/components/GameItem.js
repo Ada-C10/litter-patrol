@@ -4,20 +4,45 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayTick: false,
+    };
+  }
+   
+   //when player clicks, modifies state of displayTick
+    onIconClick = () => {
+    this.setState({ displayTick: true });
+    this.props.onItemClickedCallback(this.props.type);
+  };
 
 
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+      type: this.props.type, //display the correct icon for each item.
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const iconType = itemStyle.type;
+    console.log('type');
+    console.log(iconType);
+    const icon = ItemIcons[iconType];
+
+
+    //(this.state.displayTick)= true
+    //if clicked =correct icon, if icon type is litter, gets assigns class to render green check, if not, class assigns to render red x
+    let tickDisplay = false;
+    if (this.state.displayTick) {
+      tickDisplay = iconType === 'litter' ? 'spotted-litter' : 'spotted-nature';
+    };
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className="game-item" style={itemStyle} onClick={this.onIconClick}>
+        <div className={tickDisplay}></div>
+        <img src={icon} alt={iconType} className="icon-item"></img>
       </div>
     );
   }

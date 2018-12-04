@@ -4,6 +4,7 @@ import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
 
+
 class App extends Component {
   config = {
     itemTypes: {
@@ -24,6 +25,7 @@ class App extends Component {
   constructor() {
     super();
 
+    //initial state
     this.state = {
       items: [],
       points: 0,
@@ -39,18 +41,27 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
-  }
+  onItemClicked = (type) => {
+    console.log('in the app type:')
+    console.log(type);
+
+    //wave 3
+    let totalPoints = this.state.points + 1;
+
+    if (type === "litter") {
+      this.setState({ points: totalPoints });
+    }
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
+      //calls GameItem component
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}         //Type - attribute of const itemStyle in GameItem
+               onItemClickedCallback={this.onItemClicked} //  props (event callbacks, etc.) can be passed here
              />;
     });
 
@@ -60,12 +71,10 @@ class App extends Component {
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
-
-        <section className="level">
-          { this.levelBackground() }
+        <section className="level" onClick={this.onItemClicked}>
+          { this.levelBackground () }
           { items }
-        </section>
-
+          </section>
       </div>
     );
   }
