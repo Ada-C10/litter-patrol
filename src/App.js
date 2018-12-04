@@ -36,11 +36,14 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (iconType) => {
+    if (iconType === 'litter') {
+      const updatedPoints = this.state.points + 1;
+      this.setState({points: updatedPoints})
+    }
   }
 
   render() {
@@ -49,8 +52,10 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
+               type={item.type}         // Type - denotes item icon to be used
 
                // Additional props (event callbacks, etc.) can be passed here
+               onItemClickedCallback = {this.onItemClicked} // Event Handler passed through props
              />;
     });
 
