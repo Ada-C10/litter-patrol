@@ -3,6 +3,27 @@ body {
   overflow: hidden;
 }
 
+/* Assign this class when a litter item is clicked */
+.spotted-litter::before {
+    content: '✓';
+    position: absolute;
+    font-size: 12rem;
+    text-align: center;
+    width: 100%;
+    color: green;
+}
+
+/* Assign this class when a non-litter item is clicked */
+.spotted-nature::before {
+    content: 'x';
+    position: absolute;
+    font-size: 12rem;
+    text-align: center;
+    width: 100%;
+    color: darkred;
+}
+
+
 .hud {
   z-index: 1000;
   position: absolute;
@@ -47,25 +68,6 @@ body {
   display: block;
 }
 
-/* Assign this class when a litter item is clicked */
-.spotted-litter::before {
-    content: '✓';
-    position: absolute;
-    font-size: 12rem;
-    text-align: center;
-    width: 100%;
-    color: green;
-}
-
-/* Assign this class when a non-litter item is clicked */
-.spotted-nature::before {
-    content: 'x';
-    position: absolute;
-    font-size: 12rem;
-    text-align: center;
-    width: 100%;
-    color: darkred;
-}
 
 .overall-data {
   color: #FEFAE0;
