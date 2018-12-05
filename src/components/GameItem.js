@@ -12,18 +12,6 @@ class GameItem extends Component {
     };
   }
 
-  markAsSpotted() {
-    if (this.props.type === 'litter') {
-      this.setState({
-        gameItemClass: this.state.gameItemClass + ' spotted-litter'
-      });
-    } else {
-      this.setState({
-        gameItemClass: this.state.gameItemClass + ' spotted-nature'
-      });
-    }
-  }
-
   render() {
 
     const itemStyle = {
@@ -31,17 +19,29 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
+    const markAsSpotted = () => {
+      if (this.props.type === 'litter') {
+        this.setState({
+          gameItemClass: this.state.gameItemClass + ' spotted-litter'
+        });
+        this.props.onItemClicked();
+      } else {
+        this.setState({
+          gameItemClass: this.state.gameItemClass + ' spotted-nature'
+        });
+      }
+    }
+
     // Update this to select the correct icon for each item
     const icon = ItemIcons[`${this.props.type}`];
 
     return (
-      <div className={ this.state.gameItemClass } style={itemStyle} onClick={ this.markAsSpotted.bind(this) }>
+      <div className={ this.state.gameItemClass } style={itemStyle} onClick={ markAsSpotted }>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }
 }
-
 
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,

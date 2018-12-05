@@ -42,7 +42,9 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   renderPauseButton() {
@@ -63,6 +65,7 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                type={item.type}
+               onItemClicked={ this.onItemClicked.bind(this) }
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
