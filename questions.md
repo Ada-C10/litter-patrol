@@ -9,5 +9,6 @@ What's the difference between these two?
 ```
 
 
+## resolved
 How come { this.refreshGame } works?
 Shouldn't it be { this.refreshGame() } ?
