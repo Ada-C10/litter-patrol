@@ -29,6 +29,8 @@ class App extends Component {
     this.state = {
       items: [],
       points: 0,
+      gameplay: true,
+      spawnItems: true,
     };
 
     // Uncomment this to spawn a single test item
@@ -47,8 +49,14 @@ class App extends Component {
     });
   }
 
-  renderPauseButton() {
-    if (this.spawnItems) {
+  toggleGameplay = () => {
+    this.setState({
+      gameplay: !this.state.gameplay
+    });
+  }
+
+  renderPauseButton = () => {
+    if (this.state.spawnItems) {
       return (
         <button class="pause-button" onClick={ this.enableSpawner.bind(this, false) }>Pause Spawning!</button>
       )
@@ -65,30 +73,50 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                type={item.type}
-               onItemClicked={ this.onItemClicked.bind(this) }
+               onItemClicked={ this.onItemClicked }
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 
-    return (
-      <div className="game">
-        <section className="hud">
-          <div class="flex-container-for-pause-button">
-            <h2 className="score">Litter Spotted: { this.state.points }</h2>
-            { this.renderPauseButton() }
-            <h2 className="invisible">Litter Spotted: { this.state.points }</h2>
+    const renderGameplay = () => {
+      if (this.state.gameplay) {
+        return (
+          <div className="game">
+            <section className="hud">
+              <div class="flex-container-for-pause-button">
+                <h2 className="score">Litter Spotted: { this.state.points }</h2>
+                { this.renderPauseButton() }
+                <h2 className="invisible">Litter Spotted: { this.state.points }</h2>
+              </div>
+              <img className="logo" src={logo} alt="Litter Patrol logo" />
+              <QuitButton
+                toggleGameplay = { this.toggleGameplay }
+                enableSpawner={ this.enableSpawner.bind(this) }
+                clearItems={ this.clearItems.bind(this) }
+              />
+            </section>
+
+            <section className="level">
+              { this.levelBackground() }
+              { items }
+            </section>
+
           </div>
-          <img className="logo" src={logo} alt="Litter Patrol logo" />
-          <QuitButton />
-        </section>
+        )
+      } else {
+        return (
+          <QuitPage
+            toggleGameplay={ this.toggleGameplay }
+            enableSpawner={ this.enableSpawner.bind(this) }
+          />
+        )
+      }
+    }
 
-        <section className="level">
-          { this.levelBackground() }
-          { items }
-        </section>
-
+    return (
+      <div>
+        { renderGameplay() }
       </div>
     );
   }
@@ -111,7 +139,7 @@ class App extends Component {
 
     // Should we spawn a new item?
     const {spawnRate, spawnRateRnd} = this.config;
-    if(this.spawnItems && spawnRate > 0) {
+    if(this.state.spawnItems && spawnRate > 0) {
       let spawnDelta = time - (this.lastSpawn || 0);
 
       // Randomize spawn rate
@@ -168,7 +196,15 @@ class App extends Component {
   }
 
   enableSpawner(bool) {
-    this.spawnItems = bool;
+    this.setState({
+      spawnItems: bool
+    })
+  }
+
+  clearItems() {
+    this.setState({
+      items: []
+    })
   }
 
   levelBackground() {

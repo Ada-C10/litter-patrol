@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import QuitPage from './QuitPage.js';
 import './QuitButton.css';
 
 class QuitButton extends Component {
+
+  makeItStop = () => {
+    this.props.toggleGameplay();
+    this.props.enableSpawner(false);
+    this.props.clearItems();
+  }
 
   stopGameButton() {
     return (
       <div className="hexagon">
         <span className="e-brake" onClick={ this.makeItStop }>
-          <p>nope nope nope</p>
-          <p>make it</p>
           <p>stop</p>
+          <p>b4 i</p>
+          <p>puke</p>
         </span>
       </div>
     )
-  }
-
-  makeItStop() {
-    ReactDOM.render(<QuitPage />, document.getElementById('root'));
   }
 
   render() {

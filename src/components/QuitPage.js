@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import App from '../App.js';
 import './QuitPage.css';
 
 class QuitPage extends Component {
 
-  returnToNewGame() {
-    ReactDOM.render(<App />, document.getElementById('root'));
+  returnToGame = () => {
+    this.props.toggleGameplay();
+    this.props.enableSpawner(true);
   }
 
   render() {
     return (
       <div className="flex-container-for-quiet-page">
         <h1>break time, luv u!</h1>
+        <h4>we saved ur score btw.</h4>
         <div className="container-for-border-button">
-          <button className="refresh-button" onClick={ this.returnToNewGame }>
+          <button className="refresh-button" onClick={ this.returnToGame }>
             I'm feeling better and I'm ready to go back to the game!
           </button>
         </div>
