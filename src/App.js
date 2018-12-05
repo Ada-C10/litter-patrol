@@ -31,16 +31,13 @@ class App extends Component {
       points: 0,
       gameplay: true,
       spawnItems: true,
+
     };
 
     // Uncomment this to spawn a single test item
     //const testItem = this.spawnItem(Date.now());
     //this.state.items.push(testItem);
 
-    // Uncomment this to automatically spawn new items
-    this.enableSpawner(true);
-
-    console.log(this.state);
   }
 
   onItemClicked = () => {
@@ -58,11 +55,11 @@ class App extends Component {
   renderPauseButton = () => {
     if (this.state.spawnItems) {
       return (
-        <button class="pause-button" onClick={ this.enableSpawner.bind(this, false) }>Pause Spawning!</button>
+        <button className="pause-button" onClick={ this.enableSpawner.bind(this, false) }>Pause Spawning!</button>
       )
     } else {
       return (
-        <button class="pause-button" onClick={ this.enableSpawner.bind(this, true) }>Resume Spawning!</button>
+        <button className="pause-button" onClick={ this.enableSpawner.bind(this, true) }>Resume Spawning!</button>
       )
     }
   }
@@ -84,7 +81,7 @@ class App extends Component {
         return (
           <div className="game">
             <section className="hud">
-              <div class="flex-container-for-pause-button">
+              <div className="flex-container-for-pause-button">
                 <h2 className="score">Litter Spotted: { this.state.points }</h2>
                 { this.renderPauseButton() }
                 <h2 className="invisible">Litter Spotted: { this.state.points }</h2>
@@ -195,13 +192,13 @@ class App extends Component {
     return selectedType;
   }
 
-  enableSpawner(bool) {
+  enableSpawner = (bool) => {
     this.setState({
       spawnItems: bool
     })
   }
 
-  clearItems() {
+  clearItems = () => {
     this.setState({
       items: []
     })
