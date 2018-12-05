@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
+import QuitButton from './components/QuitButton.js';
+import QuitPage from './components/QuitPage.js';
 import logo from './images/logo.png';
 
 class App extends Component {
@@ -59,6 +61,7 @@ class App extends Component {
         <section className="hud">
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
+          <QuitButton />
         </section>
 
         <section className="level">

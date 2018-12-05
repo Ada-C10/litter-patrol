@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
-
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
