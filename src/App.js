@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
+import ItemIcons from './ItemIcons.js';
 import logo from './images/logo.png';
 
 class App extends Component {
@@ -39,15 +40,19 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  handleItemClick = (itemType) => {//scoring based on item type clicked
+    if (itemType === 'litter') {
+      this.setState({ points: this.state.points + 1 });
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+               layer={100 + i}
+               itemType={item.type} //prop for GameItem
+               onItemClick={this.handleItemClick}// 
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
