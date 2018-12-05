@@ -30,27 +30,43 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
     console.log(this.state);
+    console.log(this.state.points)
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClick = (type) => {
+    if (type === 'litter') {
+      console.log(type)
+      console.log(this.state.points)
+      this.setState({ points: this.state.points + 1});
+
+    }
   }
+
+
+    // takes id
+    //items.find(item -> item.id == id? return T
+    //item.clicked = true
+    //google array.prototype.find
+    // Fill this in!
+
 
   render() {
+
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
+               onItemClick = {this.onClickHandler}
+               type = {item.type}
 
-               // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 
@@ -75,6 +91,7 @@ class App extends Component {
   // Implementation details \\
 
   tick(time) {
+
     const newState = {};
 
     // Cull any items that are expired
