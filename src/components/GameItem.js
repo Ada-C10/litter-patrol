@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import '../App.css';
 import PropTypes from 'prop-types';
+import ItemIcons from '../ItemIcons.js';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      itemClass: ''
+    };
+  }
+// need event handler for when its clicked and it's trash and hasnt been clicked befre
+onClickHandler = () => {
+
+  const itemClickedClass = (this.props.type === 'litter')
+    ? 'spotted-litter'
+    : 'spotted-nature';
+  this.setState({itemClass: itemClickedClass});
+
+  if (this.props.onItemClick){
+    this.props.onItemClick(this.props.type)
+  }
+}
 
   render() {
     const itemStyle = {
@@ -12,11 +31,16 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    ;
+    const icon = ItemIcons[this.props.type];
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={this.props.icon} alt="Item" className="icon-item"></img>
+      <div
+        className={`game-item ${this.state.itemClass}`}
+        style={itemStyle}
+        onClick={this.onClickHandler}
+        >
+
+        <img src={icon} alt="Item" className="icon-item" ></img>
       </div>
     );
   }
@@ -26,7 +50,7 @@ class GameItem extends Component {
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
-  icon: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired
 }
 
 export default GameItem;

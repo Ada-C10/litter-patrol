@@ -3,7 +3,6 @@ import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
-import ItemIcons from './ItemIcons.js';
 
 class App extends Component {
   config = {
@@ -38,11 +37,25 @@ class App extends Component {
     this.enableSpawner();
 
     console.log(this.state);
+    console.log(this.state.points)
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClick = (type) => {
+    if (type === 'litter') {
+      console.log(type)
+      console.log(this.state.points)
+      this.setState({ points: this.state.points + 1});
+
+    }
   }
+
+
+    // takes id
+    //items.find(item -> item.id == id? return T
+    //item.clicked = true
+    //google array.prototype.find
+    // Fill this in!
+
 
   render() {
 
@@ -51,9 +64,9 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-               icon = {ItemIcons[item.type]}
+               onItemClick = {this.onClickHandler}
+               type = {item.type}
 
-               // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 
