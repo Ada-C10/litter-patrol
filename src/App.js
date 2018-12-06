@@ -8,7 +8,7 @@ class App extends Component {
   config = {
     itemTypes: {
       // type: spawn rate (weighting)
-      litter:  30,
+      litter:  10,
       rock:     5,
       bush:     5,
       flower:   5,
@@ -102,7 +102,7 @@ class App extends Component {
         spawnDelta *= factor;
       }
 
-      if(spawnDelta >= (1 / spawnRate) * 1000) {
+      if(spawnDelta >= (1 / spawnRate) * 500) {
         newState.items = [
           ...(newState.items || this.state.items),
           this.spawnItem(time),
