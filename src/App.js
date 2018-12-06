@@ -41,9 +41,10 @@ class App extends Component {
 
   onItemClicked = (type) => {
     // Fill this in! this needs to be clicking on the litter part, bring in type as a param. if the litter is clicked on, add points plus one
-    if(type === 'litter') {
-      this.setState({ points: this.state.points + 1 });
-    }
+    this.setState({
+      points: this.state.points + type
+     });
+    console.log(this.state.points)
   }
 
   render() {
@@ -53,6 +54,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
               type={item.type}
+              onClick={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

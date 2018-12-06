@@ -19,14 +19,19 @@ class GameItem extends Component {
     };
   }
   // click event thing needs to be an arrow function
-  onClick = () => {
+  onClickChange = (event) => {
     if(!this.state.spotted) {
       this.setState({ spotted: true});
-      this.props.onItemClicked(this.props.type);
+      this.props.onClick(this.props.type);
     }
-
+    const pointsOfItems = this.props.type === "litter" ? 1 : 0;
+    this.props.onClick(pointsOfItems);
   }
+
+
   render() {
+    const spotted = this.props.type === "litter" ? "spotted-litter" : "spotted-nature";
+    const itemToMark = this.state.clickedOn ? spotted : null
     const itemStyle = {
       // charles made this part
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -45,7 +50,10 @@ class GameItem extends Component {
 
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <div className={itemToMark}>
+          <img src={icon} alt="Item" className="icon-item" onClick={this.onClickChange}></img>
+          <img src={icon} alt="Item" className="icon-item"></img>
+        </div>
       </div>
     );
   }
