@@ -8,11 +8,11 @@ class App extends Component {
   config = {
     itemTypes: {
       // type: spawn rate (weighting)
-      litter:  10,
-      rock:     5,
-      bush:     5,
-      flower:   5,
-      mushroom: 5,
+      litter:  5,
+      rock:     3,
+      bush:     3,
+      flower:   3,
+      mushroom: 3,
     },
     spawnRate: 1.2, // Hz
     spawnRateRnd: 1.79, // randomization factor
