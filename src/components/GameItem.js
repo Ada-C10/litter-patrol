@@ -8,13 +8,19 @@ class GameItem extends Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       spotted: false,
       itemStyleClass: ""
+=======
+      clicked: false,
+      recordOf: ""
+>>>>>>> parent of e826bae... callback function added for App to implement point tracking on item click events
     }
 
   }
 
   onItemClicked = () => {
+<<<<<<< HEAD
     this.setState({spotted: true});
     this.setState({styleItem: this.setClass()})
 
@@ -26,6 +32,18 @@ class GameItem extends Component {
   setClass = () => {
 
     return this.props.type === "litter" ? "spotted-litter" : "spotted-nature"
+=======
+    this.setState({clicked: true});
+    this.setState({recordOf: this.setClass()})
+  }
+
+  setClass = () => {
+    if (this.props.type === "litter"){
+      return "spotted-litter"
+    } else {
+      return "spotted-nature"
+    }
+>>>>>>> parent of e826bae... callback function added for App to implement point tracking on item click events
   }
 
   render() {
@@ -35,13 +53,17 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons[this.props.type]
-
+    const icon = ItemIcons[`${this.props.type}`]
     return (
+<<<<<<< HEAD
         <div className={"game-item " + this.state.itemStyleClass} style={itemStyle} onClick={ this.onItemClicked }>
+=======
+      <button onClick={ this.onItemClicked } >
+        <div className={"game-item " + this.state.recordOf} style={itemStyle}>
+>>>>>>> parent of e826bae... callback function added for App to implement point tracking on item click events
           <img src={icon} alt="Item" className="icon-item"/>
         </div>
-
+      </button>
     );
   }
 }
