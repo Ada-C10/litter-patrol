@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
+import QuitButton from './components/QuitButton.js';
+import QuitPage from './components/QuitPage.js';
 import logo from './images/logo.png';
 
 class App extends Component {
@@ -14,10 +16,10 @@ class App extends Component {
       flower:   5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
-    spawnRateRnd: 1.79, // randomization factor
-    spawnHeight: 100, // height of item spawn area in pixels
-    spawnFloor: 0, // offset from bottom of game "level" in pixels
+    spawnRate: 1.2, // 1.2 -- Hz
+    spawnRateRnd: 1.79, // 1.79 -- randomization factor
+    spawnHeight: 100, // 100 - height of item spawn area in pixels
+    spawnFloor: 0, // 0 - offset from bottom of game "level" in pixels
     itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
 
@@ -27,45 +29,98 @@ class App extends Component {
     this.state = {
       items: [],
       points: 0,
+      gameplay: true,
+      spawnItems: true,
+
     };
 
     // Uncomment this to spawn a single test item
     //const testItem = this.spawnItem(Date.now());
     //this.state.items.push(testItem);
 
-    // Uncomment this to automatically spawn new items
-    this.enableSpawner();
+  }
 
-    console.log(this.state);
+  earn = (points) => {
+    this.setState({
+      points: points
+    });
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({
+      points: this.state.points + 1
+    });
+  }
+
+  toggleGameplay = () => {
+    this.setState({
+      gameplay: !this.state.gameplay
+    });
+  }
+
+  renderPauseButton = () => {
+    if (this.state.spawnItems) {
+      return (
+        <button className="pause-button" onClick={ this.enableSpawner.bind(this, false) }>Pause Spawning!</button>
+      )
+    } else {
+      return (
+        <button className="pause-button" onClick={ this.enableSpawner.bind(this, true) }>Resume Spawning!</button>
+      )
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
+      // console.log(i); // To check Big O
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+               type={item.type}
+               onItemClickedCallback={ this.onItemClicked }
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 
+    const renderGameplay = () => {
+      if (this.state.gameplay) {
+        return (
+          <div className="game">
+            <section className="hud">
+              <div className="flex-container-for-pause-button">
+                <h2 className="score">Litter Spotted: { this.state.points }</h2>
+                { this.renderPauseButton() }
+                <h2 className="invisible">Litter Spotted: { this.state.points }</h2>
+              </div>
+              <img className="logo" src={logo} alt="Litter Patrol logo" />
+              <QuitButton
+                toggleGameplayCallback = { this.toggleGameplay }
+                enableSpawnerCallback={ this.enableSpawner.bind(this) }
+                clearItemsCallback={ this.clearItems.bind(this) }
+              />
+            </section>
+
+            <section className="level">
+              { this.levelBackground() }
+              { items }
+            </section>
+
+          </div>
+        )
+      } else {
+        return (
+          <QuitPage
+            toggleGameplayCallback={ this.toggleGameplay }
+            enableSpawnerCallback={ this.enableSpawner.bind(this) }
+          />
+        )
+      }
+    }
+
     return (
-      <div className="game">
-        <section className="hud">
-          <h2 className="score">Litter Spotted: { this.state.points }</h2>
-          <img className="logo" src={logo} alt="Litter Patrol logo" />
-        </section>
-
-        <section className="level">
-          { this.levelBackground() }
-          { items }
-        </section>
-
+      <div>
+        { renderGameplay() }
       </div>
     );
   }
@@ -88,7 +143,7 @@ class App extends Component {
 
     // Should we spawn a new item?
     const {spawnRate, spawnRateRnd} = this.config;
-    if(this.spawnItems && spawnRate > 0) {
+    if(this.state.spawnItems && spawnRate > 0) {
       let spawnDelta = time - (this.lastSpawn || 0);
 
       // Randomize spawn rate
@@ -144,8 +199,16 @@ class App extends Component {
     return selectedType;
   }
 
-  enableSpawner() {
-    this.spawnItems = true;
+  enableSpawner = (bool) => {
+    this.setState({
+      spawnItems: bool
+    })
+  }
+
+  clearItems = () => {
+    this.setState({
+      items: []
+    })
   }
 
   levelBackground() {

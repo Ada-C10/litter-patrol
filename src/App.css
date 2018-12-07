@@ -9,13 +9,37 @@ body {
   width: 100vw;
 }
 
-.score {
-  margin-left: 2vw;
+.logo {
+  margin: 3vh auto 2vh auto;
+  display: block;
 }
 
-.logo {
-  margin: 10vh auto 0 auto;
-  display: block;
+.flex-container-for-pause-button {
+  margin: 2vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.pause-button {
+  background-color: darkmagenta;
+  opacity: 0.8;
+  text-align: center;
+  color: yellow;
+  font-size: 12px;
+}
+
+.pause-button:hover {
+  background-color: #4e0c00;
+  color: springgreen;
+}
+
+.invisible{
+  visibility: hidden;
 }
 
 .level {
@@ -30,7 +54,7 @@ body {
   margin: 5px;
   cursor: pointer;
 
-  animation-duration: 4s;
+  animation-duration: 4s; /* 4s */
   animation-name: item-move;
   animation-timing-function: linear;
 
