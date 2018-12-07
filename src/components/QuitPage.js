@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './QuitPage.css';
+import PropTypes from 'prop-types';
 
 class QuitPage extends Component {
 
   returnToGame = () => {
-    this.props.toggleGameplay();
-    this.props.enableSpawner(true);
+    this.props.toggleGameplayCallback();
+    this.props.enableSpawnerCallback(true);
   }
 
   render() {
@@ -52,5 +53,10 @@ class QuitPage extends Component {
     )
   }
 };
+
+QuitPage.propTypes = {
+  toggleGameplayCallback: PropTypes.func.isRequired,
+  enableSpawnerCallback: PropTypes.func.isRequired
+}
 
 export default QuitPage;

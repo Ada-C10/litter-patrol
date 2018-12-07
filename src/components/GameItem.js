@@ -24,7 +24,7 @@ class GameItem extends Component {
         this.setState({
           gameItemClass: this.state.gameItemClass + ' spotted-litter'
         });
-        this.props.onItemClicked();
+        this.props.onItemClickedCallback();
       } else {
         this.setState({
           gameItemClass: this.state.gameItemClass + ' spotted-nature'
@@ -46,6 +46,8 @@ class GameItem extends Component {
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  onItemClickedCallback: PropTypes.func.isRequired
 }
 
 export default GameItem;

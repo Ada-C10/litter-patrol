@@ -40,6 +40,12 @@ class App extends Component {
 
   }
 
+  earn = (points) => {
+    this.setState({
+      points: points
+    });
+  }
+
   onItemClicked = () => {
     this.setState({
       points: this.state.points + 1
@@ -66,11 +72,12 @@ class App extends Component {
 
   render() {
     const items = this.state.items.map((item, i) => {
+      // console.log(i); // To check Big O
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                type={item.type}
-               onItemClicked={ this.onItemClicked }
+               onItemClickedCallback={ this.onItemClicked }
                key={item.id}            // Key - to help React with performance
                // Additional props (event callbacks, etc.) can be passed here
              />;
@@ -88,9 +95,9 @@ class App extends Component {
               </div>
               <img className="logo" src={logo} alt="Litter Patrol logo" />
               <QuitButton
-                toggleGameplay = { this.toggleGameplay }
-                enableSpawner={ this.enableSpawner.bind(this) }
-                clearItems={ this.clearItems.bind(this) }
+                toggleGameplayCallback = { this.toggleGameplay }
+                enableSpawnerCallback={ this.enableSpawner.bind(this) }
+                clearItemsCallback={ this.clearItems.bind(this) }
               />
             </section>
 
@@ -104,8 +111,8 @@ class App extends Component {
       } else {
         return (
           <QuitPage
-            toggleGameplay={ this.toggleGameplay }
-            enableSpawner={ this.enableSpawner.bind(this) }
+            toggleGameplayCallback={ this.toggleGameplay }
+            enableSpawnerCallback={ this.enableSpawner.bind(this) }
           />
         )
       }
