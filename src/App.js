@@ -35,12 +35,12 @@ class App extends Component {
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
-    console.log(this.state);
   }
 
   onItemClicked = () => {
-    console.log(this.state.notClicked)
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {
@@ -52,6 +52,7 @@ class App extends Component {
 
                type={item.type}
 
+               addPoint={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
