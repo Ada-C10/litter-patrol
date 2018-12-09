@@ -39,9 +39,17 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (value) => {
+    if (value === true) {
+    this.setState({
+      points: this.state.points + 1,
+    })
+  } else {
+    this.setState({
+      points: this.state.points - 1,
+    })
   }
+}
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -50,6 +58,8 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                itemType={item.type}
+               score = {this.state.points}
+               callback={this.onItemClicked}
              />;
     });
 
