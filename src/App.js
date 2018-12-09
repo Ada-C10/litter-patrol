@@ -41,12 +41,11 @@ class App extends Component {
 
   onItemClicked = (item) => {
     // Fill this in!
-    console.log("Clicked from App Comp!")
     let updatedPoints = this.state.points;
     if (item === "litter") {
       updatedPoints += 1
+      this.setState({points: updatedPoints})
     }
-    this.setState({points: updatedPoints})
   }
 
   render() {
