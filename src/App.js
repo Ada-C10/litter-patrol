@@ -39,8 +39,14 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (item) => {
     // Fill this in!
+    console.log("Clicked from App Comp!")
+    let updatedPoints = this.state.points;
+    if (item === "litter") {
+      updatedPoints += 1
+    }
+    this.setState({points: updatedPoints})
   }
 
   render() {
@@ -50,6 +56,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               onItemClickedCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

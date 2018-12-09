@@ -15,6 +15,7 @@ class GameItem extends Component {
   onItemSpotted = () => {
     console.log('Spotted!');
     this.setState({isSpotted: true});
+    this.props.onItemClickedCallback(this.props.type);
   }
 
   render() {
