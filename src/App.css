@@ -30,7 +30,7 @@ body {
   margin: 5px;
   cursor: pointer;
 
-  animation-duration: 4s;
+  animation-duration: 9s;
   animation-name: item-move;
   animation-timing-function: linear;
 
@@ -47,6 +47,10 @@ body {
   display: block;
 }
 
+.red {
+  background-color: red;
+}
+
 /* Assign this class when a litter item is clicked */
 .spotted-litter::before {
     content: '✓';
@@ -56,6 +60,9 @@ body {
     width: 100%;
     color: green;
 }
+
+
+
 
 /* Assign this class when a non-litter item is clicked */
 .spotted-nature::before {

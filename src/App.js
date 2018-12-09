@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    console.log(this.state.notClicked)
   }
 
   render() {
