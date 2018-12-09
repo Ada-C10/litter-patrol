@@ -5,6 +5,18 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSpotted: false,
+    }
+  }
+
+  onItemSpotted = () => {
+    console.log('Spotted!');
+    this.setState({isSpotted: true});
+  }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -14,8 +26,17 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
+    let itemClass = "game-item";
+    if (this.state.isSpotted) {
+      if (this.props.type === "litter") {
+        itemClass += " spotted-litter"
+      } else {
+        itemClass += " spotted-nature"
+      }
+    }
+
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={itemClass} style={itemStyle} onClick={this.onItemSpotted}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
