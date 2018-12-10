@@ -38,9 +38,11 @@ class App extends Component {
     // this.enableSpawner();
   }
 
-  onItemClicked = itemIndex => {
+  onItemClicked = type => {
     // Fill this in!
-    this.setState({ points: this.state.points + 1 });
+    if (type === "litter") {
+      this.setState({ points: this.state.points + 1 });
+    }
   };
 
   render() {

@@ -9,27 +9,31 @@ class GameItem extends Component {
     this.type = props.type;
     this.state = {
       spotted: false,
-      isLitter: false
+      isLitter: false,
+      itemClassName: ""
     };
   }
   spotted = () => {
     // Logic here
+    // If object is litter/has not been clicked before
     if (this.props.type === "litter" && !this.props.spotted) {
       console.log("this is litter");
-      // TODO - Make class name be returned TODO
+      // Update isLitter and spotted to true
       this.setState({
         isLitter: true,
-        spotted: true
+        spotted: true,
+        itemClassName: "spotted-litter"
       });
-      this.className = "game-item.spotted-litter::before";
-      console.log(this);
+      // If not spotted/not litter
     } else if (!this.props.spotted) {
       console.log("this is not litter, get a red x");
+      // Update spotted to true
       this.setState({
-        spotted: true
+        spotted: true,
+        itemClassName: "spotted-nature"
       });
-      this.className = "game-item.spotted-nature::before";
-      console.log(this);
+      // console.log(this);
+      // Else - Nothing to do other than update spotted
     } else {
       console.log("do nothing");
       this.setState({
@@ -52,8 +56,11 @@ class GameItem extends Component {
     const icon = ItemIcons[type];
 
     return (
-      // TODO make className dynamic
-      <div className={"game-item"} style={itemStyle} onClick={this.spotted}>
+      <div
+        className={`game-item ${this.state.itemClassName}`}
+        style={itemStyle}
+        onClick={this.spotted}
+      >
         <img src={icon} alt="Item" className="icon-item" />
       </div>
     );
