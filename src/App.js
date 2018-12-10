@@ -18,7 +18,7 @@ class App extends Component {
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
-    itemLifetime: 70 * 1000 // 10 seconds (should be longer than CSS animation time)
+    itemLifetime: 10 * 1000 // 10 seconds (should be longer than CSS animation time)
   };
 
   constructor() {
@@ -35,12 +35,13 @@ class App extends Component {
     this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    // this.enableSpawner();
+    this.enableSpawner();
   }
 
   onItemClicked = type => {
     // Fill this in!
     if (type === "litter") {
+      console.log("Add some points");
       this.setState({ points: this.state.points + 1 });
     }
   };

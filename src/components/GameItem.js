@@ -13,29 +13,28 @@ class GameItem extends Component {
       itemClassName: ""
     };
   }
+  // Method for what to do when an item is "spotted"
   spotted = () => {
     // Logic here
     // If object is litter/has not been clicked before
     if (this.props.type === "litter" && !this.props.spotted) {
-      console.log("this is litter");
+      this.props.clickCallback(this.props.type);
       // Update isLitter and spotted to true
       this.setState({
         isLitter: true,
         spotted: true,
         itemClassName: "spotted-litter"
       });
+      // Add points
       // If not spotted/not litter
     } else if (!this.props.spotted) {
-      console.log("this is not litter, get a red x");
       // Update spotted to true
       this.setState({
         spotted: true,
         itemClassName: "spotted-nature"
       });
-      // console.log(this);
       // Else - Nothing to do other than update spotted
     } else {
-      console.log("do nothing");
       this.setState({
         spotted: true
       });
@@ -76,7 +75,8 @@ GameItem.propTypes = {
   layer: PropTypes.number.isRequired,
   type: PropTypes.string,
   clicked: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
+  clickCallback: PropTypes.function
 };
 
 export default GameItem;
