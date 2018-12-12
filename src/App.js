@@ -40,14 +40,11 @@ class App extends Component {
   }
     onItemClicked = () => {
         // Fill this in!
-        console.log(this);
-        if (this.type === 'litter'){
-          this.setState({
-              points: this.points += 1
-          });
-        }
+      console.log(this);
+      this.setState({
+          points: this.state.points + 1
+      });
     };
-
 
   render() {
     const items = this.state.items.map((item, i) => {

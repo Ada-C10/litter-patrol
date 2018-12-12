@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 
 
 class GameItem extends Component {
-  propTypes = {
-    height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired,
-  };
   constructor(props){
     super(props);
 
@@ -30,10 +26,10 @@ class GameItem extends Component {
 
   };
     clickedClass = () => {
-        if (this.props.clicked && this.props.type === 'litter') {
-            return "spotted-litter"
-        } else if (this.props.clicked && this.props.type !== 'litter') {
-            return "spotted-nature"
+        if (this.state.clicked && this.props.type === 'litter') {
+            return "game-item spotted-litter"
+        } else if (this.state.clicked && this.props.type !== 'litter') {
+            return "game-item spotted-nature"
         } else {
           return "game-item"
         }
@@ -50,6 +46,7 @@ class GameItem extends Component {
     // const icon = ItemIcons.rock;
     const icon = ItemIcons[this.props.type];
 
+
     return (
       <div className={this.clickedClass()}
            style={itemStyle}>
@@ -62,5 +59,10 @@ class GameItem extends Component {
     );
   }
 }
+
+GameItem.propTypes = {
+    height: PropTypes.number.isRequired,
+    layer: PropTypes.number.isRequired,
+};
 
 export default GameItem;
